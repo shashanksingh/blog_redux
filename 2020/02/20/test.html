@@ -1,771 +1,881 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="https://shashanksingh.github.io/blog_redux/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shashanksingh.github.io/blog_redux/" rel="alternate" type="text/html" /><updated>2020-09-14T19:39:45-05:00</updated><id>https://shashanksingh.github.io/blog_redux/feed.xml</id><title type="html">fastpages</title><subtitle>An easy to use blogging platform with support for Jupyter Notebooks.</subtitle><entry><title type="html">The cell magics in IPython</title><link href="https://shashanksingh.github.io/blog_redux/2020/02/20/test.html" rel="alternate" type="text/html" title="The cell magics in IPython" /><published>2020-02-20T00:00:00-06:00</published><updated>2020-02-20T00:00:00-06:00</updated><id>https://shashanksingh.github.io/blog_redux/2020/02/20/test</id><content type="html" xml:base="https://shashanksingh.github.io/blog_redux/2020/02/20/test.html">&lt;!--
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The cell magics in IPython | fastpages</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="The cell magics in IPython" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
+<meta property="og:description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
+<link rel="canonical" href="https://shashanksingh.github.io/blog_redux/2020/02/20/test.html" />
+<meta property="og:url" content="https://shashanksingh.github.io/blog_redux/2020/02/20/test.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-02-20T00:00:00-06:00" />
+<script type="application/ld+json">
+{"description":"An easy to use blogging platform with support for Jupyter Notebooks.","url":"https://shashanksingh.github.io/blog_redux/2020/02/20/test.html","@type":"BlogPosting","headline":"The cell magics in IPython","dateModified":"2020-02-20T00:00:00-06:00","datePublished":"2020-02-20T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://shashanksingh.github.io/blog_redux/2020/02/20/test.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog_redux/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shashanksingh.github.io/blog_redux/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/blog_redux/images/favicon.ico"><link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog_redux/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog_redux/about/">About Me</a><a class="page-link" href="/blog_redux/search/">Search</a><a class="page-link" href="/blog_redux/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The cell magics in IPython</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-02-20T00:00:00-06:00" itemprop="datePublished">
+        Feb 20, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      13 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/shashanksingh/blog_redux/tree/master/_notebooks/2020-02-20-test.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog_redux/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/shashanksingh/blog_redux/master?filepath=_notebooks%2F2020-02-20-test.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog_redux/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/shashanksingh/blog_redux/blob/master/_notebooks/2020-02-20-test.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog_redux/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
 # file to edit: _notebooks/2020-02-20-test.ipynb
---&gt;
+-->
 
-&lt;div class=&quot;container&quot; id=&quot;notebook-container&quot;&gt;
+<div class="container" id="notebook-container">
         
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;IPython has a system of commands we call 'magics' that provide effectively a mini command language that is orthogonal to the syntax of Python and is extensible by the user with new commands.  Magics are meant to be typed interactively, so they use command-line conventions, such as using whitespace for separating arguments, dashes for options and other conventions typical of a command-line environment.&lt;/p&gt;
-&lt;p&gt;Magics come in two kinds:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Line magics: these are commands prepended by one &lt;code&gt;%&lt;/code&gt; character and whose arguments only extend to the end of the current line.&lt;/li&gt;
-&lt;li&gt;Cell magics: these use &lt;em&gt;two&lt;/em&gt; percent characters as a marker (&lt;code&gt;%%&lt;/code&gt;), and they receive as argument &lt;em&gt;both&lt;/em&gt; the current line where they are declared and the whole body of the cell.  Note that cell magics can &lt;em&gt;only&lt;/em&gt; be used as the first line in a cell, and as a general principle they can't be 'stacked' (i.e. you can only use one cell magic per cell).  A few of them, because of how they operate, can be stacked, but that is something you will discover on a case by case basis.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The &lt;code&gt;%lsmagic&lt;/code&gt; magic is used to list all available magics, and it will show both line and cell magics currently defined:&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>IPython has a system of commands we call 'magics' that provide effectively a mini command language that is orthogonal to the syntax of Python and is extensible by the user with new commands.  Magics are meant to be typed interactively, so they use command-line conventions, such as using whitespace for separating arguments, dashes for options and other conventions typical of a command-line environment.</p>
+<p>Magics come in two kinds:</p>
+<ul>
+<li>Line magics: these are commands prepended by one <code>%</code> character and whose arguments only extend to the end of the current line.</li>
+<li>Cell magics: these use <em>two</em> percent characters as a marker (<code>%%</code>), and they receive as argument <em>both</em> the current line where they are declared and the whole body of the cell.  Note that cell magics can <em>only</em> be used as the first line in a cell, and as a general principle they can't be 'stacked' (i.e. you can only use one cell magic per cell).  A few of them, because of how they operate, can be stacked, but that is something you will discover on a case by case basis.</li>
+</ul>
+<p>The <code>%lsmagic</code> magic is used to list all available magics, and it will show both line and cell magics currently defined:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;lsmagic&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">lsmagic</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Available line magics:
+<div class="output_text output_subarea output_execute_result">
+<pre>Available line magics:
 %alias  %alias_magic  %autocall  %automagic  %autosave  %bookmark  %cd  %clear  %colors  %config  %connect_info  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gist  %gui  %hist  %history  %install_default_config  %install_ext  %install_profiles  %killbgscripts  %less  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %lsmagic  %macro  %magic  %man  %matplotlib  %more  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %popd  %pprint  %precision  %profile  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %run  %save  %sc  %store  %sx  %system  %tb  %tic  %time  %timeit  %toc  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
 
 Available cell magics:
 %%!  %%HTML  %%SVG  %%bash  %%capture  %%debug  %%file  %%html  %%javascript  %%latex  %%perl  %%prun  %%pypy  %%python  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
 
-Automagic is ON, % prefix IS NOT needed for line magics.&lt;/pre&gt;
-&lt;/div&gt;
+Automagic is ON, % prefix IS NOT needed for line magics.</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Since in the introductory section we already covered the most frequently used line magics, we will focus here on the cell magics, which offer a great amount of power.&lt;/p&gt;
-&lt;p&gt;Let's load matplotlib and numpy so we can use numerics/plotting at will later on.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since in the introductory section we already covered the most frequently used line magics, we will focus here on the cell magics, which offer a great amount of power.</p>
+<p>Let's load matplotlib and numpy so we can use numerics/plotting at will later on.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;matplotlib&lt;/span&gt; inline
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;-Some-simple-cell-magics&quot;&gt; Some simple cell magics&lt;a class=&quot;anchor-link&quot; href=&quot;#-Some-simple-cell-magics&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Timing the execution of code; the 'timeit' magic exists both in line and cell form:&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-Some-simple-cell-magics"> Some simple cell magics<a class="anchor-link" href="#-Some-simple-cell-magics"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Timing the execution of code; the 'timeit' magic exists both in line and cell form:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;timeit&lt;/span&gt; np.linalg.eigvals(np.random.rand(100,100))
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> np.linalg.eigvals(np.random.rand(100,100))
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;100 loops, best of 3: 6.05 ms per loop
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100 loops, best of 3: 6.05 ms per loop
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-    
-
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%time&lt;/span&gt;it a = np.random.rand(100, 100)
-&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eigvals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;100 loops, best of 3: 6.07 ms per loop
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-    
-
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The &lt;code&gt;%%capture&lt;/code&gt; magic can be used to capture the stdout/err of any block of python code, either to discard it (if it's noise to you) or to store it in a variable for later use:&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%capture&lt;/span&gt; capt
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello stdout&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;and stderr&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;capt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>it a = np.random.rand(100, 100)
+<span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvals</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>100 loops, best of 3: 6.07 ms per loop
+</pre>
+</div>
+</div>
 
+</div>
+</div>
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;(&amp;#39;Hello stdout\n&amp;#39;, &amp;#39;and stderr\n&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
+</div>
+    
 
-&lt;/div&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>%%capture</code> magic can be used to capture the stdout/err of any block of python code, either to discard it (if it's noise to you) or to store it in a variable for later use:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%capture</span> capt
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello stdout&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;and stderr&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capt</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">capt</span><span class="o">.</span><span class="n">stderr</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;Hello stdout
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 
-&lt;div class=&quot;output_area&quot;&gt;
 
-&lt;div class=&quot;output_subarea output_stream output_stderr output_text&quot;&gt;
-&lt;pre&gt;and stderr
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;Hello stdout\n&#39;, &#39;and stderr\n&#39;)</pre>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-    
+</div>
+</div>
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The &lt;code&gt;%%writefile&lt;/code&gt; magic is a very useful tool that writes the cell contents as a named file:&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%writefile&lt;/span&gt; foo.py
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Hello world&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;Writing foo.py
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;run&lt;/span&gt; foo
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;Hello world
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello stdout
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_area">
 
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>and stderr
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;-Magics-for-running-code-under-other-interpreters&quot;&gt; Magics for running code under other interpreters&lt;a class=&quot;anchor-link&quot; href=&quot;#-Magics-for-running-code-under-other-interpreters&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;IPython has a &lt;code&gt;%%script&lt;/code&gt; cell magic, which lets you run a cell in
-a subprocess of any interpreter on your system, such as: bash, ruby, perl, zsh, R, etc.&lt;/p&gt;
-&lt;p&gt;It can even be a script of your own, which expects input on stdin.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>%%writefile</code> magic is a very useful tool that writes the cell contents as a named file:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;To use it, simply pass a path or shell command to the program you want to run on the &lt;code&gt;%%script&lt;/code&gt; line,
-and the rest of the cell will be run by that script, and stdout/err from the subprocess are captured and displayed.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;script&lt;/span&gt; python
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%writefile</span> foo.py
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Writing foo.py
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">run</span> foo
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello world
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="-Magics-for-running-code-under-other-interpreters"> Magics for running code under other interpreters<a class="anchor-link" href="#-Magics-for-running-code-under-other-interpreters"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>IPython has a <code>%%script</code> cell magic, which lets you run a cell in
+a subprocess of any interpreter on your system, such as: bash, ruby, perl, zsh, R, etc.</p>
+<p>It can even be a script of your own, which expects input on stdin.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To use it, simply pass a path or shell command to the program you want to run on the <code>%%script</code> line,
+and the rest of the cell will be run by that script, and stdout/err from the subprocess are captured and displayed.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">script</span> python
 import sys
-print &amp;#39;hello from Python %s&amp;#39; % sys.version
-&lt;/pre&gt;&lt;/div&gt;
+print &#39;hello from Python %s&#39; % sys.version
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;hello from Python 2.7.2 (default, Oct 11 2012, 20:14:37) 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hello from Python 2.7.2 (default, Oct 11 2012, 20:14:37) 
 [GCC 4.2.1 Compatible Apple Clang 4.0 (tags/Apple/clang-418.0.60)]
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;script&lt;/span&gt; python3
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">script</span> python3
 import sys
-print(&amp;#39;hello from Python: %s&amp;#39; % sys.version)
-&lt;/pre&gt;&lt;/div&gt;
+print(&#39;hello from Python: %s&#39; % sys.version)
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;hello from Python: 3.3.1 (v3.3.1:d9893d13c628, Apr  6 2013, 11:07:11) 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hello from Python: 3.3.1 (v3.3.1:d9893d13c628, Apr  6 2013, 11:07:11) 
 [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)]
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;IPython also creates aliases for a few common interpreters, such as bash, ruby, perl, etc.&lt;/p&gt;
-&lt;p&gt;These are all equivalent to &lt;code&gt;%%script &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>IPython also creates aliases for a few common interpreters, such as bash, ruby, perl, etc.</p>
+<p>These are all equivalent to <code>%%script &lt;name&gt;</code></p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello from Ruby &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RUBY_VERSION&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">ruby</span>
+<span class="nb">puts</span> <span class="s2">&quot;Hello from Ruby </span><span class="si">#{</span><span class="no">RUBY_VERSION</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;Hello from Ruby 1.9.3
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello from Ruby 1.9.3
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%%bash
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;hello from &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$BASH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="nb">echo</span> <span class="s2">&quot;hello from </span><span class="nv">$BASH</span><span class="s2">&quot;</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;hello from /usr/local/bin/bash
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hello from /usr/local/bin/bash
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Exercise:-write-your-own-script-that-numbers-input-lines&quot;&gt;Exercise: write your own script that numbers input lines&lt;a class=&quot;anchor-link&quot; href=&quot;#Exercise:-write-your-own-script-that-numbers-input-lines&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Write a file, called &lt;code&gt;lnum.py&lt;/code&gt;, such that the following cell works as shown (hint: don't forget about the executable bit!):&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise:-write-your-own-script-that-numbers-input-lines">Exercise: write your own script that numbers input lines<a class="anchor-link" href="#Exercise:-write-your-own-script-that-numbers-input-lines"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Write a file, called <code>lnum.py</code>, such that the following cell works as shown (hint: don't forget about the executable bit!):</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;script&lt;/span&gt; ./lnum.py
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">script</span> ./lnum.py
 my first line
 my second
 more
-&lt;/pre&gt;&lt;/div&gt;
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;0: my first line
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0: my first line
 1: my second
 2: more
 ---- END ----
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Capturing-output&quot;&gt;Capturing output&lt;a class=&quot;anchor-link&quot; href=&quot;#Capturing-output&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;You can also capture stdout/err from these subprocesses into Python variables, instead of letting them go directly to stdout/err&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Capturing-output">Capturing output<a class="anchor-link" href="#Capturing-output"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also capture stdout/err from these subprocesses into Python variables, instead of letting them go directly to stdout/err</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%%bash
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;hi, stdout&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;hello, stderr&amp;quot;&lt;/span&gt; &amp;gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash
+<span class="nb">echo</span> <span class="s2">&quot;hi, stdout&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello, stderr&quot;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;hi, stdout
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hi, stdout
+</pre>
+</div>
+</div>
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stderr output_text&quot;&gt;
-&lt;pre&gt;hello, stderr
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>hello, stderr
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-    
-
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;%%bash --out output --err error
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;hi, stdout&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;hello, stderr&amp;quot;&lt;/span&gt; &amp;gt;&lt;span class=&quot;p&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span>%%bash --out output --err error
+<span class="nb">echo</span> <span class="s2">&quot;hi, stdout&quot;</span>
+<span class="nb">echo</span> <span class="s2">&quot;hello, stderr&quot;</span> &gt;<span class="p">&amp;</span><span class="m">2</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+</div>
+    
 
-&lt;div class=&quot;output_area&quot;&gt;
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;hello, stderr
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hello, stderr
 
 hi, stdout
 
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Background-Scripts&quot;&gt;Background Scripts&lt;a class=&quot;anchor-link&quot; href=&quot;#Background-Scripts&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;These scripts can be run in the background, by adding the &lt;code&gt;--bg&lt;/code&gt; flag.&lt;/p&gt;
-&lt;p&gt;When you do this, output is discarded unless you use the &lt;code&gt;--out/err&lt;/code&gt;
-flags to store output as above.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Background-Scripts">Background Scripts<a class="anchor-link" href="#Background-Scripts"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These scripts can be run in the background, by adding the <code>--bg</code> flag.</p>
+<p>When you do this, output is discarded unless you use the <code>--out/err</code>
+flags to store output as above.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ruby_lines&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;sleep&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;line &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;no&quot;&gt;STDOUT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;flush&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">ruby</span> <span class="o">--</span><span class="n">bg</span> <span class="o">--</span><span class="n">out</span> <span class="n">ruby_lines</span>
+<span class="k">for</span> <span class="n">n</span> <span class="k">in</span> <span class="mi">1</span><span class="o">...</span><span class="mi">10</span>
+    <span class="nb">sleep</span> <span class="mi">1</span>
+    <span class="nb">puts</span> <span class="s2">&quot;line </span><span class="si">#{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="no">STDOUT</span><span class="o">.</span><span class="n">flush</span>
+<span class="k">end</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;Starting job # 0 in a separate thread.
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Starting job # 0 in a separate thread.
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;When you do store output of a background thread, these are the stdout/err &lt;em&gt;pipes&lt;/em&gt;,
-rather than the text of the output.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you do store output of a background thread, these are the stdout/err <em>pipes</em>,
+rather than the text of the output.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby_lines&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ruby_lines</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;&amp;lt;open file &amp;#39;&amp;lt;fdopen&amp;gt;&amp;#39;, mode &amp;#39;rb&amp;#39; at 0x112cd55d0&amp;gt;&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;open file &#39;&lt;fdopen&gt;&#39;, mode &#39;rb&#39; at 0x112cd55d0&gt;</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ruby_lines&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ruby_lines</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;line 1
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>line 1
 line 2
 line 3
 line 4
@@ -775,372 +885,372 @@ line 7
 line 8
 line 9
 
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h1 id=&quot;Cython-Magic-Functions-Extension&quot;&gt;Cython Magic Functions Extension&lt;a class=&quot;anchor-link&quot; href=&quot;#Cython-Magic-Functions-Extension&quot;&gt; &lt;/a&gt;&lt;/h1&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Loading-the-extension&quot;&gt;Loading the extension&lt;a class=&quot;anchor-link&quot; href=&quot;#Loading-the-extension&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;IPtyhon has a &lt;code&gt;cythonmagic&lt;/code&gt; extension that contains a number of magic functions for working with Cython code. This extension can be loaded using the &lt;code&gt;%load_ext&lt;/code&gt; magic as follows:&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Cython-Magic-Functions-Extension">Cython Magic Functions Extension<a class="anchor-link" href="#Cython-Magic-Functions-Extension"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Loading-the-extension">Loading the extension<a class="anchor-link" href="#Loading-the-extension"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>IPtyhon has a <code>cythonmagic</code> extension that contains a number of magic functions for working with Cython code. This extension can be loaded using the <code>%load_ext</code> magic as follows:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load_ext&lt;/span&gt; cythonmagic
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> cythonmagic
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The &lt;code&gt;%%cython_pyximport&lt;/code&gt; magic allows you to enter arbitrary Cython code into a cell. That Cython code is written as a &lt;code&gt;.pyx&lt;/code&gt; file in the current working directory and then imported using &lt;code&gt;pyximport&lt;/code&gt;.  You have the specify the name of the module that the Code will appear in. All symbols from the module are imported automatically by the magic function.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>%%cython_pyximport</code> magic allows you to enter arbitrary Cython code into a cell. That Cython code is written as a <code>.pyx</code> file in the current working directory and then imported using <code>pyximport</code>.  You have the specify the name of the module that the Code will appear in. All symbols from the module are imported automatically by the magic function.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;cython_pyximport&lt;/span&gt; foo
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">cython_pyximport</span> foo
 def f(x):
     return 4.0*x
-&lt;/pre&gt;&lt;/div&gt;
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;40.0&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>40.0</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;The-%cython-magic&quot;&gt;The %cython magic&lt;a class=&quot;anchor-link&quot; href=&quot;#The-%cython-magic&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Probably the most important magic is the &lt;code&gt;%cython&lt;/code&gt; magic.  This is similar to the &lt;code&gt;%%cython_pyximport&lt;/code&gt; magic, but doesn't require you to specify a module name. Instead, the &lt;code&gt;%%cython&lt;/code&gt; magic manages everything using temporary files in the &lt;code&gt;~/.cython/magic&lt;/code&gt; directory.  All of the symbols in the Cython module are imported automatically by the magic.&lt;/p&gt;
-&lt;p&gt;Here is a simple example of a Black-Scholes options pricing algorithm written in Cython:&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-%cython-magic">The %cython magic<a class="anchor-link" href="#The-%cython-magic"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Probably the most important magic is the <code>%cython</code> magic.  This is similar to the <code>%%cython_pyximport</code> magic, but doesn't require you to specify a module name. Instead, the <code>%%cython</code> magic manages everything using temporary files in the <code>~/.cython/magic</code> directory.  All of the symbols in the Cython module are imported automatically by the magic.</p>
+<p>Here is a simple example of a Black-Scholes options pricing algorithm written in Cython:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cython&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;cimport&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;cython&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;libc.math&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;cimport&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;erf&lt;/span&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">cython</span>
+<span class="k">cimport</span> <span class="nn">cython</span>
+<span class="k">from</span> <span class="nn">libc.math</span> <span class="k">cimport</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="nb">pow</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">erf</span>
 
-&lt;span class=&quot;nd&quot;&gt;@cython&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cdivision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;cdef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;std_norm_cdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;nogil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;erf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;
+<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">cdef</span> <span class="kt">double</span> <span class="nf">std_norm_cdf</span><span class="p">(</span><span class="n">double</span> <span class="n">x</span><span class="p">)</span> <span class="k">nogil</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mf">1</span><span class="o">+</span><span class="n">erf</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)))</span>
 
-&lt;span class=&quot;nd&quot;&gt;@cython&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cdivision&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;black_scholes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                 &lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;sd&quot;&gt;&amp;quot;&amp;quot;&amp;quot;Price an option using the Black-Scholes model.&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    &lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    s : initial stock price&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    k : strike price&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    t : expiration time&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    v : volatility&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    rf : risk-free rate&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    div : dividend&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    cp : +1/-1 for call/put&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;cdef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;d2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;optprice&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;nogil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;d1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;d2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;optprice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std_norm_cdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; \
-            &lt;span class=&quot;n&quot;&gt;cp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;std_norm_cdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;d2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optprice&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<span class="nd">@cython</span><span class="o">.</span><span class="n">cdivision</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">black_scholes</span><span class="p">(</span><span class="n">double</span> <span class="n">s</span><span class="p">,</span> <span class="n">double</span> <span class="n">k</span><span class="p">,</span> <span class="n">double</span> <span class="n">t</span><span class="p">,</span> <span class="n">double</span> <span class="n">v</span><span class="p">,</span>
+                 <span class="n">double</span> <span class="n">rf</span><span class="p">,</span> <span class="n">double</span> <span class="n">div</span><span class="p">,</span> <span class="n">double</span> <span class="n">cp</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Price an option using the Black-Scholes model.</span>
+<span class="sd">    </span>
+<span class="sd">    s : initial stock price</span>
+<span class="sd">    k : strike price</span>
+<span class="sd">    t : expiration time</span>
+<span class="sd">    v : volatility</span>
+<span class="sd">    rf : risk-free rate</span>
+<span class="sd">    div : dividend</span>
+<span class="sd">    cp : +1/-1 for call/put</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">cdef</span> <span class="kt">double</span> <span class="nf">d1</span><span class="p">,</span> <span class="nf">d2</span><span class="p">,</span> <span class="nf">optprice</span>
+    <span class="k">with</span> <span class="k">nogil</span><span class="p">:</span>
+        <span class="n">d1</span> <span class="o">=</span> <span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="o">/</span><span class="n">k</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">rf</span><span class="o">-</span><span class="n">div</span><span class="o">+</span><span class="mf">0.5</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="mf">2</span><span class="p">))</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">v</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">-</span> <span class="n">v</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">optprice</span> <span class="o">=</span> <span class="n">cp</span><span class="o">*</span><span class="n">s</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">div</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">std_norm_cdf</span><span class="p">(</span><span class="n">cp</span><span class="o">*</span><span class="n">d1</span><span class="p">)</span> <span class="o">-</span> \
+            <span class="n">cp</span><span class="o">*</span><span class="n">k</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">rf</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">std_norm_cdf</span><span class="p">(</span><span class="n">cp</span><span class="o">*</span><span class="n">d2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">optprice</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;/div&gt;
-    
-
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;black_scholes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;100.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;100.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.03&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;10.327861752731728&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;timeit&lt;/span&gt; black_scholes(100.0, 100.0, 1.0, 0.3, 0.03, 0.0, -1)
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">black_scholes</span><span class="p">(</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.03</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;1000000 loops, best of 3: 366 ns per loop
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 
-&lt;/div&gt;
-&lt;/div&gt;
 
-&lt;/div&gt;
-    
+<div class="output_text output_subarea output_execute_result">
+<pre>10.327861752731728</pre>
+</div>
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Cython allows you to specify additional libraries to be linked with your extension, you can do so with the &lt;code&gt;-l&lt;/code&gt; flag (also spelled &lt;code&gt;--lib&lt;/code&gt;).  Note that this flag can be passed more than once to specify multiple libraries, such as &lt;code&gt;-lm -llib2 --lib lib3&lt;/code&gt;.  Here's a simple example of how to access the system math library:&lt;/p&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+</div>
+</div>
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cython&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;lm&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;libc.math&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;cimport&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;sin(1)=&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;sin(1)= 0.841470984808
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-    
-
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;You can similarly use the &lt;code&gt;-I/--include&lt;/code&gt; flag to add include directories to the search path, and &lt;code&gt;-c/--compile-args&lt;/code&gt; to add extra flags that are passed to Cython via the &lt;code&gt;extra_compile_args&lt;/code&gt; of the distutils &lt;code&gt;Extension&lt;/code&gt; class.  Please see &lt;a href=&quot;http://docs.cython.org/src/tutorial/clibraries.html&quot;&gt;the Cython docs on C library usage&lt;/a&gt; for more details on the use of these flags.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h1 id=&quot;Rmagic-Functions-Extension&quot;&gt;Rmagic Functions Extension&lt;a class=&quot;anchor-link&quot; href=&quot;#Rmagic-Functions-Extension&quot;&gt; &lt;/a&gt;&lt;/h1&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;IPython has an &lt;code&gt;rmagic&lt;/code&gt; extension that contains a some magic functions for working with R via rpy2. This extension can be loaded using the &lt;code&gt;%load_ext&lt;/code&gt; magic as follows:&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load_ext&lt;/span&gt; rmagic
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-    
-
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;A typical use case one imagines is having some numpy arrays, wanting to compute some statistics of interest on these
- arrays and return the result back to python. Let's suppose we just want to fit a simple linear model to a scatterplot.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;matplotlib&lt;/span&gt; inline
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;plt&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> black_scholes(100.0, 100.0, 1.0, 0.3, 0.03, 0.0, -1)
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1000000 loops, best of 3: 366 ns per loop
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cython allows you to specify additional libraries to be linked with your extension, you can do so with the <code>-l</code> flag (also spelled <code>--lib</code>).  Note that this flag can be passed more than once to specify multiple libraries, such as <code>-lm -llib2 --lib lib3</code>.  Here's a simple example of how to access the system math library:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">cython</span> <span class="o">-</span><span class="n">lm</span>
+<span class="k">from</span> <span class="nn">libc.math</span> <span class="k">cimport</span> <span class="n">sin</span>
+<span class="k">print</span> <span class="s">&#39;sin(1)=&#39;</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sin(1)= 0.841470984808
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can similarly use the <code>-I/--include</code> flag to add include directories to the search path, and <code>-c/--compile-args</code> to add extra flags that are passed to Cython via the <code>extra_compile_args</code> of the distutils <code>Extension</code> class.  Please see <a href="http://docs.cython.org/src/tutorial/clibraries.html">the Cython docs on C library usage</a> for more details on the use of these flags.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Rmagic-Functions-Extension">Rmagic Functions Extension<a class="anchor-link" href="#Rmagic-Functions-Extension"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>IPython has an <code>rmagic</code> extension that contains a some magic functions for working with R via rpy2. This extension can be loaded using the <code>%load_ext</code> magic as follows:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> rmagic
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A typical use case one imagines is having some numpy arrays, wanting to compute some statistics of interest on these
+ arrays and return the result back to python. Let's suppose we just want to fit a simple linear model to a scatterplot.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;&amp;lt;matplotlib.collections.PathCollection at 0x112ab1f90&amp;gt;&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;matplotlib.collections.PathCollection at 0x112ab1f90&gt;</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_png output_subarea &quot;&gt;
-&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkoAAAF9CAYAAAD7tEcRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkoAAAF9CAYAAAD7tEcRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAEYFJREFUeJzt3V1slQcdx/H/OX0JAqULuK3uLYspUAqSUWi3MLoEiWQ6
 XMLdkGwsMXMaMxIvNm+IFXGyZPECo9udGZHohReG93mxadyicbMvTqEyRzY6NidZprRYQUrrhdps
 uj+nKuc8Xfv53MDTPWy/PEvgy3OenlOamJiYCAAA/kO56AEAANOVUAIASAglAICEUAIASAglAICE
@@ -1221,192 +1331,192 @@ GBiITZs2xdjYWPT398d9992Xnl/VUPrXswVcWW1tbXHixInYsWNHRPwjnDzIzUzz7LPPxiuvvBLn
 zp2Lo0ePRoSX96utpaUlDhw4EIcOHYqIiKVLl8bKlSsLXjW7+HOz+lpaWuKNN96IHTt2RLlcjo0b
 N8b111+fnu+z3gAAEt5wEgAgIZQAABJCCQAgIZQAABJCCQAgIZQAABJCCQAgIZQAABJ/B42SRiUf
 H7s1AAAAAElFTkSuQmCC
-&quot; /&gt;
-&lt;/div&gt;
+" />
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;We can accomplish this by first pushing variables to R, fitting a model and returning the results. The line magic %Rpush copies its arguments to variables of the same name in rpy2. The %R line magic evaluates the string in rpy2 and returns the results. In this case, the coefficients of a linear model.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can accomplish this by first pushing variables to R, fitting a model and returning the results. The line magic %Rpush copies its arguments to variables of the same name in rpy2. The %R line magic evaluates the string in rpy2 and returns the results. In this case, the coefficients of a linear model.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Rpush&lt;/span&gt; X Y
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;R&lt;/span&gt; lm(Y~X)$coef
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">Rpush</span> X Y
+<span class="o">%</span><span class="k">R</span> lm(Y~X)$coef
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([ 3.2,  0.9])&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 3.2,  0.9])</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;It is also possible to return more than one value with %R.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is also possible to return more than one value with %R.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;R&lt;/span&gt; resid(lm(Y~X)); coef(lm(X~Y))
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">R</span> resid(lm(Y~X)); coef(lm(X~Y))
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([-2.5,  0.9])&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>array([-2.5,  0.9])</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;One can also easily capture the results of %R into python objects. Like R, the return value of this multiline expression (multiline in the sense that it is separated by ';') is the final value, which is 
-the &lt;em&gt;coef(lm(X~Y))&lt;/em&gt;.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One can also easily capture the results of %R into python objects. Like R, the return value of this multiline expression (multiline in the sense that it is separated by ';') is the final value, which is 
+the <em>coef(lm(X~Y))</em>.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;To pull other variables from R, there are two more line magics, %Rpull and %Rget. Both are useful after some R code has been executed and there are variables
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To pull other variables from R, there are two more line magics, %Rpull and %Rget. Both are useful after some R code has been executed and there are variables
 in the rpy2 namespace that one would like to retrieve. The main difference is that one
  returns the value (%Rget), while the other pulls it to self.shell.user_ns (%Rpull). Imagine we've stored the results
-of some calculation in the variable &quot;a&quot; in rpy2's namespace. By using the %R magic, we can obtain these results and
-store them in b. We can also pull them directly to user_ns with %Rpull. They are both views on the same data.&lt;/p&gt;
+of some calculation in the variable "a" in rpy2's namespace. By using the %R magic, we can obtain these results and
+store them in b. We can also pull them directly to user_ns with %Rpull. They are both views on the same data.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;R&lt;/span&gt; a=resid(lm(Y~X))
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;Rpull&lt;/span&gt; a
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;R&lt;/span&gt; -o a
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="o">%</span><span class="k">R</span> a=resid(lm(Y~X))
+<span class="o">%</span><span class="k">Rpull</span> a
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="o">%</span><span class="k">R</span> -o a
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;[-0.2  0.9 -1.   0.1  0.2]
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-0.2  0.9 -1.   0.1  0.2]
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Plotting-and-capturing-output&quot;&gt;Plotting and capturing output&lt;a class=&quot;anchor-link&quot; href=&quot;#Plotting-and-capturing-output&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;R's console (i.e. its stdout() connection) is captured by ipython, as are any plots which are published as PNG files like the notebook with arguments --pylab inline. As a call to %R may produce a return value (see above) we must ask what happens to a magic like the one below. The R code specifies that something is published to the notebook. If anything is published to the notebook, that call to %R returns None.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plotting-and-capturing-output">Plotting and capturing output<a class="anchor-link" href="#Plotting-and-capturing-output"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>R's console (i.e. its stdout() connection) is captured by ipython, as are any plots which are published as PNG files like the notebook with arguments --pylab inline. As a call to %R may produce a return value (see above) we must ask what happens to a magic like the one below. The R code specifies that something is published to the notebook. If anything is published to the notebook, that call to %R returns None.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;__future__&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;print_function&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;v1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;R&lt;/span&gt; plot(X,Y); print(summary(lm(Y~X))); vv=mean(X)*mean(Y)
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;v1 is:&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;v2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;R&lt;/span&gt; mean(X)*mean(Y)
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;v2 is:&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="o">%</span><span class="k">R</span> plot(X,Y); print(summary(lm(Y~X))); vv=mean(X)*mean(Y)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v1 is:&#39;</span><span class="p">,</span> <span class="n">v1</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="o">%</span><span class="k">R</span> mean(X)*mean(Y)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v2 is:&#39;</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea &quot;&gt;
-&lt;pre&gt;
+<div class="output_text output_subarea ">
+<pre>
 Call:
 lm(formula = Y ~ X)
 
@@ -1415,7 +1525,7 @@ Residuals:
 -0.2  0.9 -1.0  0.1  0.2 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&amp;gt;|t|)  
+            Estimate Std. Error t value Pr(&gt;|t|)  
 (Intercept)   3.2000     0.6164   5.191   0.0139 *
 X             0.9000     0.2517   3.576   0.0374 *
 ---
@@ -1425,17 +1535,17 @@ Residual standard error: 0.7958 on 3 degrees of freedom
 Multiple R-squared:   0.81,	Adjusted R-squared:  0.7467 
 F-statistic: 12.79 on 1 and 3 DF,  p-value: 0.03739
 
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_png output_subarea &quot;&gt;
-&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAHgCAYAAAB91L6VAAAEJGlDQ1BJQ0MgUHJvZmlsZQAAOBGF
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAHgCAYAAAB91L6VAAAEJGlDQ1BJQ0MgUHJvZmlsZQAAOBGF
 Vd9v21QUPolvUqQWPyBYR4eKxa9VU1u5GxqtxgZJk6XtShal6dgqJOQ6N4mpGwfb6baqT3uBNwb8
 AUDZAw9IPCENBmJ72fbAtElThyqqSUh76MQPISbtBVXhu3ZiJ1PEXPX6yznfOec7517bRD1fabWa
 GVWIlquunc8klZOnFpSeTYrSs9RLA9Sr6U4tkcvNEi7BFffO6+EdigjL7ZHu/k72I796i9zRiSJP
@@ -1630,72 +1740,72 @@ AgQIEGgbAQHcNs5WIUCAAAECTQQEcBMOVwgQIECAQNsICOC2cbYKAQIECBBoIiCAm3C4QoAAAQIE
 beNsFQIECBAg0ERAADfhcIUAAQIECLSNgABuG2erECBAgACBJgICuAmHKwQIECBAoG0EBHDbOFuF
 AAECBAg0ERDATThcIUCAAAECbSMggNvG2SoECBAgQKCJgABuwuEKAQIECBBoG4H/A7mZRipqNAOP
 AAAAAElFTkSuQmCC
-&quot; /&gt;
-&lt;/div&gt;
+" />
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;v1 is: [ 10.]
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>v1 is: [ 10.]
 v2 is: [ 10.]
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</pre>
+</div>
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Cell-level-magic&quot;&gt;Cell level magic&lt;a class=&quot;anchor-link&quot; href=&quot;#Cell-level-magic&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Often, we will want to do more than a simple linear regression model. There may be several lines of R code that we want to 
-use before returning to python. This is the cell-level magic.&lt;/p&gt;
-&lt;p&gt;For the cell level magic, inputs can be passed via the -i or --inputs argument in the line. These variables are copied 
-from the shell namespace to R's namespace using rpy2.robjects.r.assign. It would be nice not to have to copy these into R: rnumpy ( &lt;a href=&quot;http://bitbucket.org/njs/rnumpy/wiki/API&quot;&gt;http://bitbucket.org/njs/rnumpy/wiki/API&lt;/a&gt; ) has done some work to limit or at least make transparent the number of copies of an array. This seems like a natural thing to try to build on. Arrays can be output from R via the -o or --outputs argument in the line. All other arguments are sent to R's png function, which is the graphics device used to create the plots.&lt;/p&gt;
-&lt;p&gt;We can redo the above calculations in one ipython cell. We might also want to add some output such as a summary
- from R or perhaps the standard plotting diagnostics of the lm.&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Cell-level-magic">Cell level magic<a class="anchor-link" href="#Cell-level-magic"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Often, we will want to do more than a simple linear regression model. There may be several lines of R code that we want to 
+use before returning to python. This is the cell-level magic.</p>
+<p>For the cell level magic, inputs can be passed via the -i or --inputs argument in the line. These variables are copied 
+from the shell namespace to R's namespace using rpy2.robjects.r.assign. It would be nice not to have to copy these into R: rnumpy ( <a href="http://bitbucket.org/njs/rnumpy/wiki/API">http://bitbucket.org/njs/rnumpy/wiki/API</a> ) has done some work to limit or at least make transparent the number of copies of an array. This seems like a natural thing to try to build on. Arrays can be output from R via the -o or --outputs argument in the line. All other arguments are sent to R's png function, which is the graphics device used to create the plots.</p>
+<p>We can redo the above calculations in one ipython cell. We might also want to add some output such as a summary
+ from R or perhaps the standard plotting diagnostics of the lm.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;o&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;XYcoef&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;XYlm&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;lm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;XYcoef&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;coef&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;XYlm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;summary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;XYlm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;par&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mfrow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;nf&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;XYlm&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="n">R</span> <span class="o">-</span><span class="n">i</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">-</span><span class="n">o</span> <span class="n">XYcoef</span>
+<span class="n">XYlm</span> <span class="o">=</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Y</span><span class="o">~</span><span class="n">X</span><span class="p">)</span>
+<span class="n">XYcoef</span> <span class="o">=</span> <span class="nf">coef</span><span class="p">(</span><span class="n">XYlm</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">summary</span><span class="p">(</span><span class="n">XYlm</span><span class="p">))</span>
+<span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">XYlm</span><span class="p">)</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea &quot;&gt;
-&lt;pre&gt;
+<div class="output_text output_subarea ">
+<pre>
 Call:
 lm(formula = Y ~ X)
 
@@ -1704,7 +1814,7 @@ Residuals:
 -0.2  0.9 -1.0  0.1  0.2 
 
 Coefficients:
-            Estimate Std. Error t value Pr(&amp;gt;|t|)  
+            Estimate Std. Error t value Pr(&gt;|t|)  
 (Intercept)   3.2000     0.6164   5.191   0.0139 *
 X             0.9000     0.2517   3.576   0.0374 *
 ---
@@ -1714,17 +1824,17 @@ Residual standard error: 0.7958 on 3 degrees of freedom
 Multiple R-squared:   0.81,	Adjusted R-squared:  0.7467 
 F-statistic: 12.79 on 1 and 3 DF,  p-value: 0.03739
 
-&lt;/pre&gt;
-&lt;/div&gt;
+</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_png output_subarea &quot;&gt;
-&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAHgCAYAAAB91L6VAAAEJGlDQ1BJQ0MgUHJvZmlsZQAAOBGF
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeAAAAHgCAYAAAB91L6VAAAEJGlDQ1BJQ0MgUHJvZmlsZQAAOBGF
 Vd9v21QUPolvUqQWPyBYR4eKxa9VU1u5GxqtxgZJk6XtShal6dgqJOQ6N4mpGwfb6baqT3uBNwb8
 AUDZAw9IPCENBmJ72fbAtElThyqqSUh76MQPISbtBVXhu3ZiJ1PEXPX6yznfOec7517bRD1fabWa
 GVWIlquunc8klZOnFpSeTYrSs9RLA9Sr6U4tkcvNEi7BFffO6+EdigjL7ZHu/k72I796i9zRiSJP
@@ -2570,398 +2680,398 @@ gCAgCMQHAWHA8cFdWhUEBAFBQBBIcwSEAaf5D0CGLwgIAoKAIBAfBIQBxwd3aVUQEAQEAUEgzREQ
 BpzmPwAZviAgCAgCgkB8EBAGHB/cpVVBQBAQBASBNEdAGHCa/wBk+IKAICAICALxQUAYcHxwl1YF
 AUFAEBAE0hwBYcBp/gOQ4QsCgoAgIAjEBwFhwPHBXVoVBAQBQUAQSHMEhAGn+Q9Ahi8ICAKCgCAQ
 HwT+H3+Bv8VJdwumAAAAAElFTkSuQmCC
-&quot; /&gt;
-&lt;/div&gt;
+" />
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h1 id=&quot;octavemagic:-Octave-inside-IPython&quot;&gt;octavemagic: Octave inside IPython&lt;a class=&quot;anchor-link&quot; href=&quot;#octavemagic:-Octave-inside-IPython&quot;&gt; &lt;/a&gt;&lt;/h1&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The &lt;code&gt;octavemagic&lt;/code&gt; extension provides the ability to interact with Octave.  It depends on the &lt;code&gt;oct2py&lt;/code&gt; and &lt;code&gt;h5py&lt;/code&gt; packages,
-which may be installed using &lt;code&gt;easy_install&lt;/code&gt;.  It has been closely modeled after the R extension, so many of its names and usage patterns are the same.&lt;/p&gt;
-&lt;p&gt;To enable the extension, load it as follows:&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="octavemagic:-Octave-inside-IPython">octavemagic: Octave inside IPython<a class="anchor-link" href="#octavemagic:-Octave-inside-IPython"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>octavemagic</code> extension provides the ability to interact with Octave.  It depends on the <code>oct2py</code> and <code>h5py</code> packages,
+which may be installed using <code>easy_install</code>.  It has been closely modeled after the R extension, so many of its names and usage patterns are the same.</p>
+<p>To enable the extension, load it as follows:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;load_ext&lt;/span&gt; octavemagic
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> octavemagic
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Overview&quot;&gt;Overview&lt;a class=&quot;anchor-link&quot; href=&quot;#Overview&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Loading the extension enables three magic functions: &lt;code&gt;%octave&lt;/code&gt;, &lt;code&gt;%octave_push&lt;/code&gt;, and &lt;code&gt;%octave_pull&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;The first is for executing one or more lines of Octave, while the latter allow moving variables between the Octave and Python workspace.
-Here you see an example of how to execute a single line of Octave, and how to transfer the generated value back to Python:&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Overview">Overview<a class="anchor-link" href="#Overview"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Loading the extension enables three magic functions: <code>%octave</code>, <code>%octave_push</code>, and <code>%octave_pull</code>.</p>
+<p>The first is for executing one or more lines of Octave, while the latter allow moving variables between the Octave and Python workspace.
+Here you see an example of how to execute a single line of Octave, and how to transfer the generated value back to Python:</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;octave&lt;/span&gt; [1 2; 3 4];
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">%</span><span class="k">octave</span> [1 2; 3 4];
+<span class="n">x</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([[ 1.,  2.],
-       [ 3.,  4.]])&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-    
-
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;octave_push&lt;/span&gt; a
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;octave&lt;/span&gt; a = a * 2;
-&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;octave_pull&lt;/span&gt; a
-&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([[2, 4, 6]])&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 1.,  2.],
+       [ 3.,  4.]])</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
-    
-
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;When using the cell magic, &lt;code&gt;%%octave&lt;/code&gt; (note the double &lt;code&gt;%&lt;/code&gt;), multiple lines of Octave can be executed together.  Unlike
-with the single cell magic, no value is returned, so we use the &lt;code&gt;-i&lt;/code&gt; and &lt;code&gt;-o&lt;/code&gt; flags to specify input and output variables.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    
-    
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%%octave -i x -o y&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<span class="o">%</span><span class="k">octave_push</span> a
+<span class="o">%</span><span class="k">octave</span> a = a * 2;
+<span class="o">%</span><span class="k">octave_pull</span> a
+<span class="n">a</span>
+</pre></div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([[ 4.,  5.],
-       [ 6.,  7.]])&lt;/pre&gt;
-&lt;/div&gt;
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[2, 4, 6]])</pre>
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Plotting&quot;&gt;Plotting&lt;a class=&quot;anchor-link&quot; href=&quot;#Plotting&quot;&gt; &lt;/a&gt;&lt;/h2&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Plot output is automatically captured and displayed, and using the &lt;code&gt;-f&lt;/code&gt; flag you may choose its format (currently, &lt;code&gt;png&lt;/code&gt; and &lt;code&gt;svg&lt;/code&gt; are supported).&lt;/p&gt;
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When using the cell magic, <code>%%octave</code> (note the double <code>%</code>), multiple lines of Octave can be executed together.  Unlike
+with the single cell magic, no value is returned, so we use the <code>-i</code> and <code>-o</code> flags to specify input and output variables.</p>
 
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
+</div>
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%%octave -f svg&lt;/span&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c">%%octave -i x -o y</span>
+<span class="n">y</span> <span class="p">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
+</pre></div>
 
-&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;2.5&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    </div>
+</div>
+</div>
 
-&lt;span class=&quot;nb&quot;&gt;polyout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;x&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;polyval&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea &quot;&gt;
-&lt;pre&gt;12*x^4 - 2.5*x^3 - 8*x^2 - 0.1*x^1 + 8&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_svg output_subarea &quot;&gt;
-&lt;svg height=&quot;240px&quot; viewBox=&quot;0 0 400 240&quot; width=&quot;400px&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
-
-&lt;desc&gt;Produced by GNUPLOT 4.4 patchlevel 3 &lt;/desc&gt;
-
-&lt;defs&gt;
-
-	&lt;circle id=&quot;gpDot&quot; r=&quot;0.5&quot; stroke-width=&quot;0.5&quot; /&gt;
-	&lt;path d=&quot;M-1,0 h2 M0,-1 v2&quot; id=&quot;gpPt0&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; /&gt;
-	&lt;path d=&quot;M-1,-1 L1,1 M1,-1 L-1,1&quot; id=&quot;gpPt1&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; /&gt;
-	&lt;path d=&quot;M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1&quot; id=&quot;gpPt2&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; /&gt;
-	&lt;rect height=&quot;2&quot; id=&quot;gpPt3&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; width=&quot;2&quot; x=&quot;-1&quot; y=&quot;-1&quot; /&gt;
-	&lt;rect fill=&quot;currentColor&quot; height=&quot;2&quot; id=&quot;gpPt4&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; width=&quot;2&quot; x=&quot;-1&quot; y=&quot;-1&quot; /&gt;
-	&lt;circle cx=&quot;0&quot; cy=&quot;0&quot; id=&quot;gpPt5&quot; r=&quot;1&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; /&gt;
-	&lt;use fill=&quot;currentColor&quot; id=&quot;gpPt6&quot; stroke=&quot;none&quot; xlink:href=&quot;#gpPt5&quot; /&gt;
-	&lt;path d=&quot;M0,-1.33 L-1.33,0.67 L1.33,0.67 z&quot; id=&quot;gpPt7&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.222&quot; /&gt;
-	&lt;use fill=&quot;currentColor&quot; id=&quot;gpPt8&quot; stroke=&quot;none&quot; xlink:href=&quot;#gpPt7&quot; /&gt;
-	&lt;use id=&quot;gpPt9&quot; stroke=&quot;currentColor&quot; transform=&quot;rotate(180)&quot; xlink:href=&quot;#gpPt7&quot; /&gt;
-	&lt;use fill=&quot;currentColor&quot; id=&quot;gpPt10&quot; stroke=&quot;none&quot; xlink:href=&quot;#gpPt9&quot; /&gt;
-	&lt;use id=&quot;gpPt11&quot; stroke=&quot;currentColor&quot; transform=&quot;rotate(45)&quot; xlink:href=&quot;#gpPt3&quot; /&gt;
-	&lt;use fill=&quot;currentColor&quot; id=&quot;gpPt12&quot; stroke=&quot;none&quot; xlink:href=&quot;#gpPt11&quot; /&gt;
-&lt;/defs&gt;
-&lt;g style=&quot;fill:none; color:white; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter&quot;&gt;
-&lt;/g&gt;
-&lt;g style=&quot;fill:none; color:white; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter&quot;&gt;
-&lt;/g&gt;
-&lt;g style=&quot;fill:none; color:black; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter&quot;&gt;
-	&lt;path d=&quot;M52.0,213.6 L64.5,213.6 M361.9,213.6 L349.4,213.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,218.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;6&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,185.7 L64.5,185.7 M361.9,185.7 L349.4,185.7 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,190.2)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;6.5&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,157.7 L64.5,157.7 M361.9,157.7 L349.4,157.7 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,162.2)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;7&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,129.8 L64.5,129.8 M361.9,129.8 L349.4,129.8 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,134.3)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;7.5&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,101.9 L64.5,101.9 M361.9,101.9 L349.4,101.9 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,106.4)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;8&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,74.0 L64.5,74.0 M361.9,74.0 L349.4,74.0 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,78.5)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;8.5&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,46.0 L64.5,46.0 M361.9,46.0 L349.4,46.0 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,50.5)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;9&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,18.1 L64.5,18.1 M361.9,18.1 L349.4,18.1 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end&quot; transform=&quot;translate(43.7,22.6)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;9.5&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,213.6 L52.0,201.1 M52.0,18.1 L52.0,30.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle&quot; transform=&quot;translate(52.0,236.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;0&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M114.0,213.6 L114.0,201.1 M114.0,18.1 L114.0,30.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle&quot; transform=&quot;translate(114.0,236.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;0.2&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M176.0,213.6 L176.0,201.1 M176.0,18.1 L176.0,30.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle&quot; transform=&quot;translate(176.0,236.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;0.4&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M237.9,213.6 L237.9,201.1 M237.9,18.1 L237.9,30.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle&quot; transform=&quot;translate(237.9,236.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;0.6&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M299.9,213.6 L299.9,201.1 M299.9,18.1 L299.9,30.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle&quot; transform=&quot;translate(299.9,236.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;0.8&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M361.9,213.6 L361.9,201.1 M361.9,18.1 L361.9,30.6 &quot; /&gt;
-	&lt;g style=&quot;stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle&quot; transform=&quot;translate(361.9,236.1)&quot;&gt;
-		&lt;text&gt;&lt;tspan&gt;1&lt;/tspan&gt;
-		&lt;/text&gt;
-	&lt;/g&gt;
-	&lt;path d=&quot;M52.0,18.1 L52.0,213.6 L361.9,213.6 L361.9,18.1 L52.0,18.1 Z &quot; /&gt;
-&lt;/g&gt;
-	&lt;a xlink:title=&quot;Plot #1&quot;&gt;
-&lt;g style=&quot;fill:none; color:red; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter&quot;&gt;
-	&lt;path d=&quot;M52.0,101.9 L55.1,102.0 L58.2,102.2 L61.3,102.5 L64.4,102.8 L67.5,103.3 L70.6,103.9 L73.7,104.5    L76.8,105.2 L79.9,106.1 L83.0,107.0 L86.1,108.0 L89.2,109.1 L92.3,110.3 L95.4,111.6 L98.5,112.9    L101.6,114.4 L104.7,115.9 L107.8,117.5 L110.9,119.2 L114.0,120.9 L117.1,122.8 L120.2,124.7 L123.3,126.6    L126.4,128.7 L129.5,130.8 L132.6,132.9 L135.7,135.2 L138.8,137.4 L141.9,139.8 L145.0,142.1 L148.1,144.5    L151.2,147.0 L154.3,149.5 L157.4,152.0 L160.5,154.5 L163.6,157.1 L166.7,159.6 L169.8,162.2 L172.9,164.8    L176.0,167.4 L179.1,170.0 L182.2,172.5 L185.3,175.1 L188.4,177.6 L191.5,180.1 L194.6,182.6 L197.7,185.0    L200.8,187.4 L203.9,189.7 L207.0,192.0 L210.0,194.1 L213.1,196.2 L216.2,198.3 L219.3,200.2 L222.4,202.0    L225.5,203.8 L228.6,205.4 L231.7,206.8 L234.8,208.2 L237.9,209.4 L241.0,210.5 L244.1,211.4 L247.2,212.1    L250.3,212.6 L253.4,213.0 L256.5,213.2 L259.6,213.2 L262.7,212.9 L265.8,212.4 L268.9,211.7 L272.0,210.8    L275.1,209.5 L278.2,208.1 L281.3,206.3 L284.4,204.3 L287.5,201.9 L290.6,199.3 L293.7,196.3 L296.8,193.0    L299.9,189.3 L303.0,185.3 L306.1,180.9 L309.2,176.1 L312.3,170.9 L315.4,165.4 L318.5,159.4 L321.6,152.9    L324.7,146.0 L327.8,138.7 L330.9,130.9 L334.0,122.6 L337.1,113.8 L340.2,104.5 L343.3,94.6 L346.4,84.3    L349.5,73.3 L352.6,61.8 L355.7,49.7 L358.8,37.0 L361.9,23.7 &quot; stroke=&quot;rgb(  0,   0, 255)&quot; /&gt;
-&lt;/g&gt;
-	&lt;/a&gt;
-&lt;g style=&quot;fill:none; color:black; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter&quot;&gt;
-&lt;/g&gt;
-&lt;/svg&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
+</div>
     
 
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The plot size is adjusted using the &lt;code&gt;-s&lt;/code&gt; flag:&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%%octave -s 500,500&lt;/span&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span>
+</pre></div>
 
-&lt;span class=&quot;c&quot;&gt;# butterworth filter, order 2, cutoff pi/2 radians&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.292893218813452&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.585786437626905&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.292893218813452&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.171572875253810&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;freqz&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_png output_subarea &quot;&gt;
-&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtEjdAAAABmJLR0QA/wD/AP+gvaeTAAAgAElE
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 4.,  5.],
+       [ 6.,  7.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Plotting">Plotting<a class="anchor-link" href="#Plotting"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plot output is automatically captured and displayed, and using the <code>-f</code> flag you may choose its format (currently, <code>png</code> and <code>svg</code> are supported).</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c">%%octave -f svg</span>
+
+<span class="n">p</span> <span class="p">=</span> <span class="p">[</span><span class="mi">12</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">-</span><span class="mi">8</span> <span class="o">-</span><span class="mf">0.1</span> <span class="mi">8</span><span class="p">];</span>
+<span class="n">x</span> <span class="p">=</span> <span class="mi">0</span><span class="p">:</span><span class="mf">0.01</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="nb">polyout</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s">&#39;x&#39;</span><span class="p">)</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">polyval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x</span><span class="p">));</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea ">
+<pre>12*x^4 - 2.5*x^3 - 8*x^2 - 0.1*x^1 + 8</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_svg output_subarea ">
+<svg height="240px" viewBox="0 0 400 240" width="400px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+<desc>Produced by GNUPLOT 4.4 patchlevel 3 </desc>
+
+<defs>
+
+	<circle id="gpDot" r="0.5" stroke-width="0.5" />
+	<path d="M-1,0 h2 M0,-1 v2" id="gpPt0" stroke="currentColor" stroke-width="0.222" />
+	<path d="M-1,-1 L1,1 M1,-1 L-1,1" id="gpPt1" stroke="currentColor" stroke-width="0.222" />
+	<path d="M-1,0 L1,0 M0,-1 L0,1 M-1,-1 L1,1 M-1,1 L1,-1" id="gpPt2" stroke="currentColor" stroke-width="0.222" />
+	<rect height="2" id="gpPt3" stroke="currentColor" stroke-width="0.222" width="2" x="-1" y="-1" />
+	<rect fill="currentColor" height="2" id="gpPt4" stroke="currentColor" stroke-width="0.222" width="2" x="-1" y="-1" />
+	<circle cx="0" cy="0" id="gpPt5" r="1" stroke="currentColor" stroke-width="0.222" />
+	<use fill="currentColor" id="gpPt6" stroke="none" xlink:href="#gpPt5" />
+	<path d="M0,-1.33 L-1.33,0.67 L1.33,0.67 z" id="gpPt7" stroke="currentColor" stroke-width="0.222" />
+	<use fill="currentColor" id="gpPt8" stroke="none" xlink:href="#gpPt7" />
+	<use id="gpPt9" stroke="currentColor" transform="rotate(180)" xlink:href="#gpPt7" />
+	<use fill="currentColor" id="gpPt10" stroke="none" xlink:href="#gpPt9" />
+	<use id="gpPt11" stroke="currentColor" transform="rotate(45)" xlink:href="#gpPt3" />
+	<use fill="currentColor" id="gpPt12" stroke="none" xlink:href="#gpPt11" />
+</defs>
+<g style="fill:none; color:white; stroke:currentColor; stroke-width:1.00; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:white; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M52.0,213.6 L64.5,213.6 M361.9,213.6 L349.4,213.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,218.1)">
+		<text><tspan>6</tspan>
+		</text>
+	</g>
+	<path d="M52.0,185.7 L64.5,185.7 M361.9,185.7 L349.4,185.7 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,190.2)">
+		<text><tspan>6.5</tspan>
+		</text>
+	</g>
+	<path d="M52.0,157.7 L64.5,157.7 M361.9,157.7 L349.4,157.7 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,162.2)">
+		<text><tspan>7</tspan>
+		</text>
+	</g>
+	<path d="M52.0,129.8 L64.5,129.8 M361.9,129.8 L349.4,129.8 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,134.3)">
+		<text><tspan>7.5</tspan>
+		</text>
+	</g>
+	<path d="M52.0,101.9 L64.5,101.9 M361.9,101.9 L349.4,101.9 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,106.4)">
+		<text><tspan>8</tspan>
+		</text>
+	</g>
+	<path d="M52.0,74.0 L64.5,74.0 M361.9,74.0 L349.4,74.0 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,78.5)">
+		<text><tspan>8.5</tspan>
+		</text>
+	</g>
+	<path d="M52.0,46.0 L64.5,46.0 M361.9,46.0 L349.4,46.0 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,50.5)">
+		<text><tspan>9</tspan>
+		</text>
+	</g>
+	<path d="M52.0,18.1 L64.5,18.1 M361.9,18.1 L349.4,18.1 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:end" transform="translate(43.7,22.6)">
+		<text><tspan>9.5</tspan>
+		</text>
+	</g>
+	<path d="M52.0,213.6 L52.0,201.1 M52.0,18.1 L52.0,30.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle" transform="translate(52.0,236.1)">
+		<text><tspan>0</tspan>
+		</text>
+	</g>
+	<path d="M114.0,213.6 L114.0,201.1 M114.0,18.1 L114.0,30.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle" transform="translate(114.0,236.1)">
+		<text><tspan>0.2</tspan>
+		</text>
+	</g>
+	<path d="M176.0,213.6 L176.0,201.1 M176.0,18.1 L176.0,30.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle" transform="translate(176.0,236.1)">
+		<text><tspan>0.4</tspan>
+		</text>
+	</g>
+	<path d="M237.9,213.6 L237.9,201.1 M237.9,18.1 L237.9,30.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle" transform="translate(237.9,236.1)">
+		<text><tspan>0.6</tspan>
+		</text>
+	</g>
+	<path d="M299.9,213.6 L299.9,201.1 M299.9,18.1 L299.9,30.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle" transform="translate(299.9,236.1)">
+		<text><tspan>0.8</tspan>
+		</text>
+	</g>
+	<path d="M361.9,213.6 L361.9,201.1 M361.9,18.1 L361.9,30.6 " />
+	<g style="stroke:none; fill:rgb(0,0,0); font-family:Arial; font-size:12.00pt; text-anchor:middle" transform="translate(361.9,236.1)">
+		<text><tspan>1</tspan>
+		</text>
+	</g>
+	<path d="M52.0,18.1 L52.0,213.6 L361.9,213.6 L361.9,18.1 L52.0,18.1 Z " />
+</g>
+	<a xlink:title="Plot #1">
+<g style="fill:none; color:red; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter">
+	<path d="M52.0,101.9 L55.1,102.0 L58.2,102.2 L61.3,102.5 L64.4,102.8 L67.5,103.3 L70.6,103.9 L73.7,104.5    L76.8,105.2 L79.9,106.1 L83.0,107.0 L86.1,108.0 L89.2,109.1 L92.3,110.3 L95.4,111.6 L98.5,112.9    L101.6,114.4 L104.7,115.9 L107.8,117.5 L110.9,119.2 L114.0,120.9 L117.1,122.8 L120.2,124.7 L123.3,126.6    L126.4,128.7 L129.5,130.8 L132.6,132.9 L135.7,135.2 L138.8,137.4 L141.9,139.8 L145.0,142.1 L148.1,144.5    L151.2,147.0 L154.3,149.5 L157.4,152.0 L160.5,154.5 L163.6,157.1 L166.7,159.6 L169.8,162.2 L172.9,164.8    L176.0,167.4 L179.1,170.0 L182.2,172.5 L185.3,175.1 L188.4,177.6 L191.5,180.1 L194.6,182.6 L197.7,185.0    L200.8,187.4 L203.9,189.7 L207.0,192.0 L210.0,194.1 L213.1,196.2 L216.2,198.3 L219.3,200.2 L222.4,202.0    L225.5,203.8 L228.6,205.4 L231.7,206.8 L234.8,208.2 L237.9,209.4 L241.0,210.5 L244.1,211.4 L247.2,212.1    L250.3,212.6 L253.4,213.0 L256.5,213.2 L259.6,213.2 L262.7,212.9 L265.8,212.4 L268.9,211.7 L272.0,210.8    L275.1,209.5 L278.2,208.1 L281.3,206.3 L284.4,204.3 L287.5,201.9 L290.6,199.3 L293.7,196.3 L296.8,193.0    L299.9,189.3 L303.0,185.3 L306.1,180.9 L309.2,176.1 L312.3,170.9 L315.4,165.4 L318.5,159.4 L321.6,152.9    L324.7,146.0 L327.8,138.7 L330.9,130.9 L334.0,122.6 L337.1,113.8 L340.2,104.5 L343.3,94.6 L346.4,84.3    L349.5,73.3 L352.6,61.8 L355.7,49.7 L358.8,37.0 L361.9,23.7 " stroke="rgb(  0,   0, 255)" />
+</g>
+	</a>
+<g style="fill:none; color:black; stroke:currentColor; stroke-width:0.50; stroke-linecap:butt; stroke-linejoin:miter">
+</g>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The plot size is adjusted using the <code>-s</code> flag:</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c">%%octave -s 500,500</span>
+
+<span class="c"># butterworth filter, order 2, cutoff pi/2 radians</span>
+<span class="n">b</span> <span class="p">=</span> <span class="p">[</span><span class="mf">0.292893218813452</span>  <span class="mf">0.585786437626905</span>  <span class="mf">0.292893218813452</span><span class="p">];</span>
+<span class="n">a</span> <span class="p">=</span> <span class="p">[</span><span class="mi">1</span>  <span class="mi">0</span>  <span class="mf">0.171572875253810</span><span class="p">];</span>
+<span class="nb">freqz</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAH0CAIAAABEtEjdAAAABmJLR0QA/wD/AP+gvaeTAAAgAElE
 QVR4nOzdeVxUZfcA8DNsw76obLKDCMhqvMYiigkIKlLugktpby6JYqBCWIkFmomYu1D5KxN9RV/N
 Xg0UN1wSUwtcMkVkUQFRttjX+/vj6jQiDgPMXebe8/30x8xdnuccJo7DnTvPERAEAQghhLhFgekA
 EEIIyR4Wd4QQ4iAs7gghxEFY3BFCiIOwuCOEEAdhcUcIIQ7C4o4QQhyExR0hhDgIiztCCHEQFneE
@@ -3495,48 +3605,48 @@ q1evmpqaRkZGzps3Lyws7O7du25ubmSti4vLiRMnbt++vWjRoh07diQkJEyaNIlz7oQJE37++ees
 rCwjI6Nly5Z9+umn3O/B8m6ZN1OnTr148aKpqWlYWJivr29iYuK4ceO4D1iyZAkAfPTRRzQaTQif
 AoK8CQrnRyuCyD1ubm40Gi0rK0uy3Th06NCqVasqKyv5GedBEMHAB6oIIj4qKysfPHiwZcuW+fPn
 Y2RHRMr/A5YdmP24XbLsAAAAAElFTkSuQmCC
-&quot; /&gt;
-&lt;/div&gt;
+" />
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
     
     
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;%%octave -s 600,200 -f png&lt;/span&gt;
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c">%%octave -s 600,200 -f png</span>
 
-&lt;span class=&quot;nb&quot;&gt;subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;121&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;meshgrid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.^&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.^&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;surf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">);</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">]</span> <span class="p">=</span> <span class="nb">meshgrid</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">r</span> <span class="p">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span> <span class="o">+</span> <span class="nb">cos</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">.^</span><span class="mi">2</span><span class="p">;</span>
+<span class="nb">surf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
 
-&lt;span class=&quot;nb&quot;&gt;subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;122&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;sombrero&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">);</span>
+<span class="nb">sombrero</span><span class="p">()</span>
+</pre></div>
 
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+    </div>
+</div>
+</div>
 
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
+<div class="output_wrapper">
+<div class="output">
 
-&lt;div class=&quot;output_area&quot;&gt;
+<div class="output_area">
 
 
 
-&lt;div class=&quot;output_png output_subarea &quot;&gt;
-&lt;img src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADICAIAAAC7/QjhAAAABmJLR0QA/wD/AP+gvaeTAAAgAElE
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAlgAAADICAIAAAC7/QjhAAAABmJLR0QA/wD/AP+gvaeTAAAgAElE
 QVR4nOydZ1xTWROH/zcJIYGE3gUEVBAFEQRFUWxYsYOKvRfErmBXxN4b+to79t5YxS66oqKgCCrS
 VECQ3km55/0QzLKu66qJBDXPLx9Obu6dM7ltTpmZQxFCoESJEiVKlPyuMBStgBIlSpQoUaJIlIZQ
 iRIlSpT81igNoRIlSpQo+a1RGkIlSpQoUfJbozSESpQoUaLkt0ZpCJUoUaJEyW+N0hAqUaJEiZLf
@@ -4763,134 +4873,50 @@ cyhde3Z2Zr5oiZeKB/CJl6jiF2HUOOw7taOZGaLN4biOpcGFm9lU4iWqWCOUmtc1EiAyarCmiN/i
 T7XXJcigWCz29PS8vLwYa4q6rl9dXVU8fQ9EXvnfmuLBwcH6+vrS0pK5HSbxElUkQtk9PT1NT08f
 Hh6KvTALCwuicjcgoVKpVFdXZ7moKIrofRgjXiKKRAgAkBprhAAAqZEIAQBSIxECAKRGIgQASI1E
 CACQGokQACA1EiEAQGokQgCA1P4CasZOMJR81Q8AAAAASUVORK5CYII=
-&quot; /&gt;
-&lt;/div&gt;
+" />
+</div>
 
-&lt;/div&gt;
+</div>
 
-&lt;/div&gt;
-&lt;/div&gt;
+</div>
+</div>
 
-&lt;/div&gt;
+</div>
     
 
-&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">An Example Markdown Post</title><link href="https://shashanksingh.github.io/blog_redux/markdown/2020/01/14/test-markdown-post.html" rel="alternate" type="text/html" title="An Example Markdown Post" /><published>2020-01-14T00:00:00-06:00</published><updated>2020-01-14T00:00:00-06:00</updated><id>https://shashanksingh.github.io/blog_redux/markdown/2020/01/14/test-markdown-post</id><content type="html" xml:base="https://shashanksingh.github.io/blog_redux/markdown/2020/01/14/test-markdown-post.html">&lt;h1 id=&quot;example-markdown-post&quot;&gt;Example Markdown Post&lt;/h1&gt;
+</div>
 
-&lt;h2 id=&quot;basic-setup&quot;&gt;Basic setup&lt;/h2&gt;
 
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-filename.md&lt;/code&gt;&lt;/p&gt;
+  </div><a class="u-url" href="/blog_redux/2020/02/20/test.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog_redux/"></data>
 
-&lt;p&gt;Where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filename&lt;/code&gt; is whatever file name you choose, to remind yourself what this post is about. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.md&lt;/code&gt; is the file extension for markdown files.&lt;/p&gt;
+  <div class="wrapper">
 
-&lt;p&gt;The first line of the file should start with a single hash character, then a space, then your title. This is how you create a “&lt;em&gt;level 1 heading&lt;/em&gt;” in markdown. Then you can create level 2, 3, etc headings as you wish but repeating the hash character, such as you see in the line &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;## File names&lt;/code&gt; above.&lt;/p&gt;
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog_redux/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog_redux/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
 
-&lt;h2 id=&quot;basic-formatting&quot;&gt;Basic formatting&lt;/h2&gt;
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog_redux/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog_redux/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
 
-&lt;p&gt;You can use &lt;em&gt;italics&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;code font text&lt;/code&gt;, and create &lt;a href=&quot;https://www.markdownguide.org/cheat-sheet/&quot;&gt;links&lt;/a&gt;. Here’s a footnote &lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;. Here’s a horizontal rule:&lt;/p&gt;
+  </div>
 
-&lt;hr /&gt;
+</footer>
+</body>
 
-&lt;h2 id=&quot;lists&quot;&gt;Lists&lt;/h2&gt;
-
-&lt;p&gt;Here’s a list:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;item 1&lt;/li&gt;
-  &lt;li&gt;item 2&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;And a numbered list:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;item 1&lt;/li&gt;
-  &lt;li&gt;item 2&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;boxes-and-stuff&quot;&gt;Boxes and stuff&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This is a quotation&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;Toast Toast--warning googoo&quot;&gt;
-   &lt;span class=&quot;Toast-icon&quot;&gt;&lt;svg class=&quot;octicon octicon-alert&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
-   &lt;span class=&quot;Toast-content&quot;&gt;You can include alert boxes&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;p&gt;…and…&lt;/p&gt;
-
-&lt;div class=&quot;Toast&quot;&gt;
-   &lt;span class=&quot;Toast-icon&quot;&gt;&lt;svg class=&quot;octicon octicon-info&quot; viewBox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
-   &lt;span class=&quot;Toast-content&quot;&gt;You can include info boxes&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;images&quot;&gt;Images&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/blog_redux/images/logo.png&quot; alt=&quot;&quot; title=&quot;fast.ai's logo&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;code&quot;&gt;Code&lt;/h2&gt;
-
-&lt;p&gt;You can format text and code per usual&lt;/p&gt;
-
-&lt;p&gt;General preformatted text:&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# Do a thing
-do_thing()
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Python code and output:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Prints '2'
-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;2
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Formatting text as shell commands:&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;hello world&quot;&lt;/span&gt;
-./some_script.sh &lt;span class=&quot;nt&quot;&gt;--option&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;
-wget https://example.com/cat_photo1.png
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Formatting text as YAML:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;value&lt;/span&gt;
-&lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;another_key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;another&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;value&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;tables&quot;&gt;Tables&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column 1&lt;/th&gt;
-      &lt;th&gt;Column 2&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;A thing&lt;/td&gt;
-      &lt;td&gt;Another thing&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;tweetcards&quot;&gt;Tweetcards&lt;/h2&gt;
-
-&lt;div class=&quot;jekyll-twitter-plugin&quot;&gt;&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Altair 4.0 is released! &lt;a href=&quot;https://t.co/PCyrIOTcvv&quot;&gt;https://t.co/PCyrIOTcvv&lt;/a&gt;&lt;br /&gt;Try it with:&lt;br /&gt;&lt;br /&gt;  pip install -U altair&lt;br /&gt;&lt;br /&gt;The full list of changes is at &lt;a href=&quot;https://t.co/roXmzcsT58&quot;&gt;https://t.co/roXmzcsT58&lt;/a&gt; ...read on for some highlights. &lt;a href=&quot;https://t.co/vWJ0ZveKbZ&quot;&gt;pic.twitter.com/vWJ0ZveKbZ&lt;/a&gt;&lt;/p&gt;&amp;mdash; Jake VanderPlas (@jakevdp) &lt;a href=&quot;https://twitter.com/jakevdp/status/1204765621767901185?ref_src=twsrc%5Etfw&quot;&gt;December 11, 2019&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-&lt;/div&gt;
-
-&lt;h2 id=&quot;footnotes&quot;&gt;Footnotes&lt;/h2&gt;
-
-&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;This is the footnote. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;</content><author><name></name></author><category term="markdown" /><summary type="html">Example Markdown Post</summary></entry></feed>
+</html>
