@@ -2,33 +2,22 @@
   
     
         "post0": {
-            "title": "Title",
-            "content": "# &quot;Covid&quot; &gt; &quot;Lets see if we can dynamically cluster countries on where they are with their covid handling&quot; - toc: false - branch: master - badges: true - comments: true - categories: [fastpages, jupyter] - image: images/some_folder/your_image.png - hide: false",
-            "url": "https://shashanksingh.github.io/blog_redux/2020/09/20/covid-impact.html",
-            "relUrl": "/2020/09/20/covid-impact.html",
-            "date": " • Sep 20, 2020"
+            "title": "Algorithm per week",
+            "content": "DFS . &quot;Depth First Search :Finding all paths &quot; . Problem statement . Depth First Search . What possible ways are there to reach from ADELAIDE to SYDNEY ? . import requests import pandas as pd import json r = requests.get(&#39;https://data.gov.au/data/api/3/action/datastore_search?resource_id=677d307f-6a1f-4de4-9b85-5e1aa7074423&#39;) data_json = json.loads(r.text) data = pd.DataFrame(data_json[&quot;result&quot;][&quot;records&quot;],columns=[&quot;City1&quot;,&quot;City2&quot;,&quot;Aircraft_Trips&quot;]) . pd.set_option(&quot;display.max_rows&quot;, 10) data.groupby(by = [&quot;City1&quot;,&quot;City2&quot;]).count() . Aircraft_Trips . City1 City2 . ADELAIDE ALICE SPRINGS 2 | . BRISBANE 3 | . DARWIN 4 | . GOLD COAST 4 | . MELBOURNE 1 | . ... ... ... | . PERTH SYDNEY 4 | . PROSERPINE SYDNEY 1 | . SUNSHINE COAST SYDNEY 1 | . SYDNEY TOWNSVILLE 3 | . WAGGA WAGGA 1 | . 48 rows × 1 columns . #first initizlie it unique_columns = list(set(data.City1.unique()).union(set(data.City2.unique()))) adjacency_matrix = [[0 for columns in range(len(unique_columns))] for row in range(len(unique_columns))] adjacency_list = [] #Lets create adjcacncey network # fill in the values for ind in data.index: city1_index = unique_columns.index(data[&#39;City1&#39;][ind]) city2_index = unique_columns.index(data[&#39;City2&#39;][ind]) adjacency_matrix[city1_index][city2_index] = 1 adjacency_matrix[city2_index][city1_index] = 1 draw_graph_from_adjacency_matrix(adjacency_matrix) . from typing import List TOTAL_VERTICES = len(adjacency_list) TOTAL_NODES = len(unique_columns) class PathFinder(): def __init__(self, adjacency_matrix : List[List[int]])-&gt; None: self.adjacency_matrix = adjacency_matrix def print_all_paths_helper(self, city_name_from:str , city_name_to:str, visited: List[bool], path: List[str]) -&gt; str: city_name_from_index = unique_columns.index(city_name_from) # print(visited,city_name_from_index) visited[city_name_from_index] = True path.append(city_name_from) if city_name_from == city_name_to : print(path) else: pass #for all neighbours of this path call ourselbes path.pop() visited[city_name_from_index]= False def print_all_paths(self, city_name_from:str , city_name_to:str) -&gt; str: if not (city_name_from in unique_columns and city_name_to in unique_columns): return &quot;Incorrect City&quot; visited = [False] * TOTAL_NODES path = [] self.print_all_paths_helper(city_name_from , city_name_to, visited, path ) pf = PathFinder(adjacency_matrix) pf.print_all_paths(&quot;ADELAIDE&quot;, &quot;SYDNEY&quot;) . .",
+            "url": "https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2020/10/03/dfs.html",
+            "relUrl": "/dfs/jupyter/python/2020/10/03/dfs.html",
+            "date": " • Oct 3, 2020"
         }
         
     
   
     
         ,"post1": {
-            "title": "Title",
-            "content": "",
-            "url": "https://shashanksingh.github.io/blog_redux/2020/09/20/Test.html",
-            "relUrl": "/2020/09/20/Test.html",
+            "title": "How Covid prepared are countries right now",
+            "content": "%matplotlib inline import matplotlib.pyplot as plt import pandas as pd #### -- Step 1 (Download data)- URL_DATASET = r&#39;https://raw.githubusercontent.com/datasets/covid-19/master/data/countries-aggregated.csv&#39; df1 = pd.read_csv(URL_DATASET) # print(df1.head(3)) # Uncomment to see the dataframe #### -- Step 2 (Select data for India)- df_india = df1[df1[&#39;Country&#39;] == &#39;India&#39;] #### -- Step 3 (Plot data)- # Increase size of plot plt.rcParams[&quot;figure.figsize&quot;]=10,10 # Remove if not on Jupyter # Plot column &#39;Confirmed&#39; df_india.plot(kind = &#39;bar&#39;, x = &#39;Date&#39;, y = &#39;Confirmed&#39;, color = &#39;blue&#39;) ax1 = plt.gca() df_india.plot(kind = &#39;bar&#39;, x = &#39;Date&#39;, y = &#39;Deaths&#39;, color = &#39;red&#39;, ax = ax1) plt.show() .",
+            "url": "https://shashanksingh.github.io/blog_redux/covid/jupyter/python/2020/09/20/covid-impact.html",
+            "relUrl": "/covid/jupyter/python/2020/09/20/covid-impact.html",
             "date": " • Sep 20, 2020"
-        }
-        
-    
-  
-    
-        ,"post2": {
-            "title": "An Example Markdown Post",
-            "content": "Example Markdown Post . Basic setup . Jekyll requires blog post files to be named according to the following format: . YEAR-MONTH-DAY-filename.md . Where YEAR is a four-digit number, MONTH and DAY are both two-digit numbers, and filename is whatever file name you choose, to remind yourself what this post is about. .md is the file extension for markdown files. . The first line of the file should start with a single hash character, then a space, then your title. This is how you create a “level 1 heading” in markdown. Then you can create level 2, 3, etc headings as you wish but repeating the hash character, such as you see in the line ## File names above. . Basic formatting . You can use italics, bold, code font text, and create links. Here’s a footnote 1. Here’s a horizontal rule: . . Lists . Here’s a list: . item 1 | item 2 | . And a numbered list: . item 1 | item 2 | Boxes and stuff . This is a quotation . . You can include alert boxes …and… . . You can include info boxes Images . . Code . You can format text and code per usual . General preformatted text: . # Do a thing do_thing() . Python code and output: . # Prints &#39;2&#39; print(1+1) . 2 . Formatting text as shell commands: . echo &quot;hello world&quot; ./some_script.sh --option &quot;value&quot; wget https://example.com/cat_photo1.png . Formatting text as YAML: . key: value - another_key: &quot;another value&quot; . Tables . Column 1 Column 2 . A thing | Another thing | . Tweetcards . Altair 4.0 is released! https://t.co/PCyrIOTcvvTry it with: pip install -U altairThe full list of changes is at https://t.co/roXmzcsT58 ...read on for some highlights. pic.twitter.com/vWJ0ZveKbZ . &mdash; Jake VanderPlas (@jakevdp) December 11, 2019 Footnotes . This is the footnote. &#8617; . |",
-            "url": "https://shashanksingh.github.io/blog_redux/markdown/2020/01/14/test-markdown-post.html",
-            "relUrl": "/markdown/2020/01/14/test-markdown-post.html",
-            "date": " • Jan 14, 2020"
         }
         
     
