@@ -24,11 +24,192 @@ layout: notebook
         
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I have been thinking to understand the true impact of industries.</p>
+<p>During this madness of ever locking down and then un-locked down's, I have been wondering how the world has been affected by the madness of it all.
+So I did, what I did best, try searching for some answers by experimenting with data that I found online.</p>
+<p>Probably not the best way, but served as a good proxy for me to form a mental picture of how the world is dragging itself through 2020.</p>
+<p>On more positive news with vaccine just around the corner, there is finally light at end of the tunnel.</p>
+<p>So to cut short to the chase, I am using google trend and timelines from matplotlib to see what correlations I could find. The adage applies here "correlation is not causation", so take it with pinch of salt.</p>
 
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2402_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("RELATED_QUERIES", {"comparisonItem":[{"keyword":"/m/05fjl2","geo":"","time":"2019-01-11 2020-12-01"}],"category":0,"property":""}, {"exploreQuery":"date=2019-01-11%202020-12-01&q=%2Fm%2F05fjl2","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_google_trend_per_week_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ticket_google_trend_per_week</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">,</span><span class="s2">&quot;percentage&quot;</span><span class="p">])</span>
+<span class="n">ticket_google_trend_per_week_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>week</th>
+      <th>percentage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-01-13</td>
+      <td>94</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-01-20</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-01-27</td>
+      <td>87</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019-02-03</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019-02-10</td>
+      <td>85</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">ticket_google_trend_per_week_df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="s1">&#39;scales&#39;</span><span class="p">,</span> <span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;week:T&#39;</span><span class="p">),</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;percentage:Q&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)),</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-6d4d2950c5ed4f579ba1ab61c164c63d"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-6d4d2950c5ed4f579ba1ab61c164c63d") {
+      outputDiv = document.getElementById("altair-viz-6d4d2950c5ed4f579ba1ab61c164c63d");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-7de4ae80c4d7e361ad293ccf3b8629f7"}, "mark": "line", "encoding": {"x": {"type": "temporal", "field": "week"}, "y": {"type": "quantitative", "field": "percentage"}}, "selection": {"selector008": {"type": "interval", "bind": "scales", "encodings": ["x"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-7de4ae80c4d7e361ad293ccf3b8629f7": [{"week": "2019-01-13", "percentage": "94"}, {"week": "2019-01-20", "percentage": "87"}, {"week": "2019-01-27", "percentage": "87"}, {"week": "2019-02-03", "percentage": "84"}, {"week": "2019-02-10", "percentage": "85"}, {"week": "2019-02-17", "percentage": "85"}, {"week": "2019-02-24", "percentage": "81"}, {"week": "2019-03-03", "percentage": "84"}, {"week": "2019-03-10", "percentage": "85"}, {"week": "2019-03-17", "percentage": "86"}, {"week": "2019-03-24", "percentage": "86"}, {"week": "2019-03-31", "percentage": "84"}, {"week": "2019-04-07", "percentage": "81"}, {"week": "2019-04-14", "percentage": "82"}, {"week": "2019-04-21", "percentage": "85"}, {"week": "2019-04-28", "percentage": "82"}, {"week": "2019-05-05", "percentage": "80"}, {"week": "2019-05-12", "percentage": "85"}, {"week": "2019-05-19", "percentage": "81"}, {"week": "2019-05-26", "percentage": "86"}, {"week": "2019-06-02", "percentage": "86"}, {"week": "2019-06-09", "percentage": "90"}, {"week": "2019-06-16", "percentage": "10"}, {"week": "2019-06-23", "percentage": "92"}, {"week": "2019-06-30", "percentage": "94"}, {"week": "2019-07-07", "percentage": "94"}, {"week": "2019-07-14", "percentage": "92"}, {"week": "2019-07-21", "percentage": "91"}, {"week": "2019-07-28", "percentage": "90"}, {"week": "2019-08-04", "percentage": "85"}, {"week": "2019-08-11", "percentage": "87"}, {"week": "2019-08-18", "percentage": "86"}, {"week": "2019-08-25", "percentage": "84"}, {"week": "2019-09-01", "percentage": "83"}, {"week": "2019-09-08", "percentage": "79"}, {"week": "2019-09-15", "percentage": "77"}, {"week": "2019-09-22", "percentage": "79"}, {"week": "2019-09-29", "percentage": "77"}, {"week": "2019-10-06", "percentage": "78"}, {"week": "2019-10-13", "percentage": "79"}, {"week": "2019-10-20", "percentage": "82"}, {"week": "2019-10-27", "percentage": "81"}, {"week": "2019-11-03", "percentage": "80"}, {"week": "2019-11-10", "percentage": "77"}, {"week": "2019-11-17", "percentage": "75"}, {"week": "2019-11-24", "percentage": "82"}, {"week": "2019-12-01", "percentage": "76"}, {"week": "2019-12-08", "percentage": "77"}, {"week": "2019-12-15", "percentage": "80"}, {"week": "2019-12-22", "percentage": "87"}, {"week": "2019-12-29", "percentage": "86"}, {"week": "2020-01-05", "percentage": "88"}, {"week": "2020-01-12", "percentage": "89"}, {"week": "2020-01-19", "percentage": "84"}, {"week": "2020-01-26", "percentage": "77"}, {"week": "2020-02-02", "percentage": "76"}, {"week": "2020-02-09", "percentage": "73"}, {"week": "2020-02-16", "percentage": "75"}, {"week": "2020-02-23", "percentage": "74"}, {"week": "2020-03-01", "percentage": "70"}, {"week": "2020-03-08", "percentage": "83"}, {"week": "2020-03-15", "percentage": "58"}, {"week": "2020-03-22", "percentage": "39"}, {"week": "2020-03-29", "percentage": "28"}, {"week": "2020-04-05", "percentage": "24"}, {"week": "2020-04-12", "percentage": "24"}, {"week": "2020-04-19", "percentage": "24"}, {"week": "2020-04-26", "percentage": "24"}, {"week": "2020-05-03", "percentage": "26"}, {"week": "2020-05-10", "percentage": "28"}, {"week": "2020-05-17", "percentage": "35"}, {"week": "2020-05-24", "percentage": "36"}, {"week": "2020-05-31", "percentage": "41"}, {"week": "2020-06-07", "percentage": "43"}, {"week": "2020-06-14", "percentage": "42"}, {"week": "2020-06-21", "percentage": "44"}, {"week": "2020-06-28", "percentage": "48"}, {"week": "2020-07-05", "percentage": "48"}, {"week": "2020-07-12", "percentage": "45"}, {"week": "2020-07-19", "percentage": "46"}, {"week": "2020-07-26", "percentage": "44"}, {"week": "2020-08-02", "percentage": "44"}, {"week": "2020-08-09", "percentage": "45"}, {"week": "2020-08-16", "percentage": "44"}, {"week": "2020-08-23", "percentage": "44"}, {"week": "2020-08-30", "percentage": "45"}, {"week": "2020-09-06", "percentage": "45"}, {"week": "2020-09-13", "percentage": "44"}, {"week": "2020-09-20", "percentage": "44"}, {"week": "2020-09-27", "percentage": "46"}, {"week": "2020-10-04", "percentage": "46"}, {"week": "2020-10-11", "percentage": "47"}, {"week": "2020-10-18", "percentage": "48"}, {"week": "2020-10-25", "percentage": "46"}, {"week": "2020-11-01", "percentage": "43"}, {"week": "2020-11-08", "percentage": "46"}, {"week": "2020-11-15", "percentage": "46"}, {"week": "2020-11-22", "percentage": "47"}, {"week": "2020-11-29", "percentage": "47"}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 
