@@ -24,7 +24,211 @@ layout: notebook
         
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I have been thinking to understand the true impact of industries.</p>
+<p>During this madness of ever locking down and then un-locked down's, I have been wondering how the world has been affected by the madness of it all.
+So I did, what I did best, try searching for some answers by experimenting with data that I found online.</p>
+<p>Probably not the best way, but served as a good proxy for me to form a mental picture of how the world is dragging itself through 2020.</p>
+<p>On more positive news with vaccine just around the corner, there is finally light at end of the tunnel.</p>
+<p>So to cut short to the chase, I am using google trend and timelines from matplotlib to see what correlations I could find. The adage applies here "<a href="https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation">correlation is not causation</a>", so take it with pinch of salt.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2402_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("RELATED_QUERIES", {"comparisonItem":[{"keyword":"/m/05fjl2","geo":"","time":"2019-01-11 2020-12-01"}],"category":0,"property":""}, {"exploreQuery":"date=2019-01-11%202020-12-01&q=%2Fm%2F05fjl2","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_google_trend_per_week_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ticket_google_trend_per_week</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">,</span><span class="s2">&quot;ticket&quot;</span><span class="p">,</span> <span class="s2">&quot;vaccine&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">])</span>
+<span class="n">ticket_google_trend_per_week_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>week</th>
+      <th>ticket</th>
+      <th>vaccine</th>
+      <th>stream</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2019-11-17</td>
+      <td>66</td>
+      <td>12</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2019-11-24</td>
+      <td>66</td>
+      <td>10</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2019-12-01</td>
+      <td>67</td>
+      <td>11</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2019-12-08</td>
+      <td>65</td>
+      <td>10</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2019-12-15</td>
+      <td>65</td>
+      <td>10</td>
+      <td>69</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_google_trend_per_week_melted_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">ticket_google_trend_per_week_df</span><span class="p">,</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">],</span><span class="n">var_name</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;types&quot;</span><span class="p">])</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">ticket_google_trend_per_week_melted_df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_area</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;week&#39;</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;types&#39;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">850</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-18b2c5734a8444838996efd5c9e4fe92"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-18b2c5734a8444838996efd5c9e4fe92") {
+      outputDiv = document.getElementById("altair-viz-18b2c5734a8444838996efd5c9e4fe92");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-a256a787be23fd85ed1fba85fb22d3f0"}, "mark": {"type": "area", "opacity": 0.3}, "encoding": {"color": {"type": "nominal", "field": "types"}, "x": {"type": "nominal", "field": "week"}, "y": {"type": "quantitative", "field": "value", "stack": null}}, "height": 400, "width": 850, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-a256a787be23fd85ed1fba85fb22d3f0": [{"week": "2019-11-17", "types": "ticket", "value": "66"}, {"week": "2019-11-24", "types": "ticket", "value": "66"}, {"week": "2019-12-01", "types": "ticket", "value": "67"}, {"week": "2019-12-08", "types": "ticket", "value": "65"}, {"week": "2019-12-15", "types": "ticket", "value": "65"}, {"week": "2019-12-22", "types": "ticket", "value": "69"}, {"week": "2019-12-29", "types": "ticket", "value": "73"}, {"week": "2020-01-05", "types": "ticket", "value": "67"}, {"week": "2020-01-12", "types": "ticket", "value": "65"}, {"week": "2020-01-19", "types": "ticket", "value": "63"}, {"week": "2020-01-26", "types": "ticket", "value": "63"}, {"week": "2020-02-02", "types": "ticket", "value": "63"}, {"week": "2020-02-09", "types": "ticket", "value": "61"}, {"week": "2020-02-16", "types": "ticket", "value": "64"}, {"week": "2020-02-23", "types": "ticket", "value": "63"}, {"week": "2020-03-01", "types": "ticket", "value": "62"}, {"week": "2020-03-08", "types": "ticket", "value": "58"}, {"week": "2020-03-15", "types": "ticket", "value": "41"}, {"week": "2020-03-22", "types": "ticket", "value": "28"}, {"week": "2020-03-29", "types": "ticket", "value": "26"}, {"week": "2020-04-05", "types": "ticket", "value": "24"}, {"week": "2020-04-12", "types": "ticket", "value": "23"}, {"week": "2020-04-19", "types": "ticket", "value": "23"}, {"week": "2020-04-26", "types": "ticket", "value": "26"}, {"week": "2020-05-03", "types": "ticket", "value": "26"}, {"week": "2020-05-10", "types": "ticket", "value": "31"}, {"week": "2020-05-17", "types": "ticket", "value": "31"}, {"week": "2020-05-24", "types": "ticket", "value": "30"}, {"week": "2020-05-31", "types": "ticket", "value": "33"}, {"week": "2020-06-07", "types": "ticket", "value": "32"}, {"week": "2020-06-14", "types": "ticket", "value": "31"}, {"week": "2020-06-21", "types": "ticket", "value": "34"}, {"week": "2020-06-28", "types": "ticket", "value": "36"}, {"week": "2020-07-05", "types": "ticket", "value": "35"}, {"week": "2020-07-12", "types": "ticket", "value": "34"}, {"week": "2020-07-19", "types": "ticket", "value": "36"}, {"week": "2020-07-26", "types": "ticket", "value": "37"}, {"week": "2020-08-02", "types": "ticket", "value": "38"}, {"week": "2020-08-09", "types": "ticket", "value": "38"}, {"week": "2020-08-16", "types": "ticket", "value": "36"}, {"week": "2020-08-23", "types": "ticket", "value": "36"}, {"week": "2020-08-30", "types": "ticket", "value": "41"}, {"week": "2020-09-06", "types": "ticket", "value": "47"}, {"week": "2020-09-13", "types": "ticket", "value": "47"}, {"week": "2020-09-20", "types": "ticket", "value": "41"}, {"week": "2020-09-27", "types": "ticket", "value": "41"}, {"week": "2020-10-04", "types": "ticket", "value": "39"}, {"week": "2020-10-11", "types": "ticket", "value": "36"}, {"week": "2020-10-18", "types": "ticket", "value": "36"}, {"week": "2020-10-25", "types": "ticket", "value": "36"}, {"week": "2020-11-01", "types": "ticket", "value": "35"}, {"week": "2020-11-08", "types": "ticket", "value": "34"}, {"week": "2020-11-15", "types": "ticket", "value": "36"}, {"week": "2020-11-22", "types": "ticket", "value": "36"}, {"week": "2020-11-29", "types": "ticket", "value": "39"}, {"week": "2019-11-17", "types": "vaccine", "value": "12"}, {"week": "2019-11-24", "types": "vaccine", "value": "10"}, {"week": "2019-12-01", "types": "vaccine", "value": "11"}, {"week": "2019-12-08", "types": "vaccine", "value": "10"}, {"week": "2019-12-15", "types": "vaccine", "value": "10"}, {"week": "2019-12-22", "types": "vaccine", "value": "8"}, {"week": "2019-12-29", "types": "vaccine", "value": "9"}, {"week": "2020-01-05", "types": "vaccine", "value": "10"}, {"week": "2020-01-12", "types": "vaccine", "value": "11"}, {"week": "2020-01-19", "types": "vaccine", "value": "12"}, {"week": "2020-01-26", "types": "vaccine", "value": "15"}, {"week": "2020-02-02", "types": "vaccine", "value": "13"}, {"week": "2020-02-09", "types": "vaccine", "value": "13"}, {"week": "2020-02-16", "types": "vaccine", "value": "12"}, {"week": "2020-02-23", "types": "vaccine", "value": "19"}, {"week": "2020-03-01", "types": "vaccine", "value": "23"}, {"week": "2020-03-08", "types": "vaccine", "value": "38"}, {"week": "2020-03-15", "types": "vaccine", "value": "53"}, {"week": "2020-03-22", "types": "vaccine", "value": "48"}, {"week": "2020-03-29", "types": "vaccine", "value": "42"}, {"week": "2020-04-05", "types": "vaccine", "value": "38"}, {"week": "2020-04-12", "types": "vaccine", "value": "34"}, {"week": "2020-04-19", "types": "vaccine", "value": "39"}, {"week": "2020-04-26", "types": "vaccine", "value": "37"}, {"week": "2020-05-03", "types": "vaccine", "value": "43"}, {"week": "2020-05-10", "types": "vaccine", "value": "37"}, {"week": "2020-05-17", "types": "vaccine", "value": "41"}, {"week": "2020-05-24", "types": "vaccine", "value": "29"}, {"week": "2020-05-31", "types": "vaccine", "value": "27"}, {"week": "2020-06-07", "types": "vaccine", "value": "28"}, {"week": "2020-06-14", "types": "vaccine", "value": "30"}, {"week": "2020-06-21", "types": "vaccine", "value": "32"}, {"week": "2020-06-28", "types": "vaccine", "value": "36"}, {"week": "2020-07-05", "types": "vaccine", "value": "35"}, {"week": "2020-07-12", "types": "vaccine", "value": "57"}, {"week": "2020-07-19", "types": "vaccine", "value": "51"}, {"week": "2020-07-26", "types": "vaccine", "value": "41"}, {"week": "2020-08-02", "types": "vaccine", "value": "40"}, {"week": "2020-08-09", "types": "vaccine", "value": "62"}, {"week": "2020-08-16", "types": "vaccine", "value": "39"}, {"week": "2020-08-23", "types": "vaccine", "value": "34"}, {"week": "2020-08-30", "types": "vaccine", "value": "36"}, {"week": "2020-09-06", "types": "vaccine", "value": "38"}, {"week": "2020-09-13", "types": "vaccine", "value": "36"}, {"week": "2020-09-20", "types": "vaccine", "value": "34"}, {"week": "2020-09-27", "types": "vaccine", "value": "34"}, {"week": "2020-10-04", "types": "vaccine", "value": "32"}, {"week": "2020-10-11", "types": "vaccine", "value": "34"}, {"week": "2020-10-18", "types": "vaccine", "value": "34"}, {"week": "2020-10-25", "types": "vaccine", "value": "32"}, {"week": "2020-11-01", "types": "vaccine", "value": "27"}, {"week": "2020-11-08", "types": "vaccine", "value": "69"}, {"week": "2020-11-15", "types": "vaccine", "value": "61"}, {"week": "2020-11-22", "types": "vaccine", "value": "52"}, {"week": "2020-11-29", "types": "vaccine", "value": "51"}, {"week": "2019-11-17", "types": "stream", "value": "67"}, {"week": "2019-11-24", "types": "stream", "value": "67"}, {"week": "2019-12-01", "types": "stream", "value": "72"}, {"week": "2019-12-08", "types": "stream", "value": "61"}, {"week": "2019-12-15", "types": "stream", "value": "69"}, {"week": "2019-12-22", "types": "stream", "value": "66"}, {"week": "2019-12-29", "types": "stream", "value": "71"}, {"week": "2020-01-05", "types": "stream", "value": "62"}, {"week": "2020-01-12", "types": "stream", "value": "62"}, {"week": "2020-01-19", "types": "stream", "value": "71"}, {"week": "2020-01-26", "types": "stream", "value": "64"}, {"week": "2020-02-02", "types": "stream", "value": "65"}, {"week": "2020-02-09", "types": "stream", "value": "61"}, {"week": "2020-02-16", "types": "stream", "value": "63"}, {"week": "2020-02-23", "types": "stream", "value": "69"}, {"week": "2020-03-01", "types": "stream", "value": "57"}, {"week": "2020-03-08", "types": "stream", "value": "62"}, {"week": "2020-03-15", "types": "stream", "value": "73"}, {"week": "2020-03-22", "types": "stream", "value": "78"}, {"week": "2020-03-29", "types": "stream", "value": "68"}, {"week": "2020-04-05", "types": "stream", "value": "68"}, {"week": "2020-04-12", "types": "stream", "value": "66"}, {"week": "2020-04-19", "types": "stream", "value": "66"}, {"week": "2020-04-26", "types": "stream", "value": "60"}, {"week": "2020-05-03", "types": "stream", "value": "56"}, {"week": "2020-05-10", "types": "stream", "value": "58"}, {"week": "2020-05-17", "types": "stream", "value": "54"}, {"week": "2020-05-24", "types": "stream", "value": "58"}, {"week": "2020-05-31", "types": "stream", "value": "56"}, {"week": "2020-06-07", "types": "stream", "value": "54"}, {"week": "2020-06-14", "types": "stream", "value": "55"}, {"week": "2020-06-21", "types": "stream", "value": "55"}, {"week": "2020-06-28", "types": "stream", "value": "55"}, {"week": "2020-07-05", "types": "stream", "value": "55"}, {"week": "2020-07-12", "types": "stream", "value": "59"}, {"week": "2020-07-19", "types": "stream", "value": "58"}, {"week": "2020-07-26", "types": "stream", "value": "59"}, {"week": "2020-08-02", "types": "stream", "value": "61"}, {"week": "2020-08-09", "types": "stream", "value": "63"}, {"week": "2020-08-16", "types": "stream", "value": "67"}, {"week": "2020-08-23", "types": "stream", "value": "63"}, {"week": "2020-08-30", "types": "stream", "value": "61"}, {"week": "2020-09-06", "types": "stream", "value": "67"}, {"week": "2020-09-13", "types": "stream", "value": "72"}, {"week": "2020-09-20", "types": "stream", "value": "66"}, {"week": "2020-09-27", "types": "stream", "value": "69"}, {"week": "2020-10-04", "types": "stream", "value": "63"}, {"week": "2020-10-11", "types": "stream", "value": "59"}, {"week": "2020-10-18", "types": "stream", "value": "68"}, {"week": "2020-10-25", "types": "stream", "value": "60"}, {"week": "2020-11-01", "types": "stream", "value": "68"}, {"week": "2020-11-08", "types": "stream", "value": "58"}, {"week": "2020-11-15", "types": "stream", "value": "57"}, {"week": "2020-11-22", "types": "stream", "value": "58"}, {"week": "2020-11-29", "types": "stream", "value": "10"}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So my inference was the moment Covid-19 hit prime time globally, people stopped looking for tickets, top search items being: the ticket price, ticket booking, train ticket, online ticket, ticket flight, etc. Consequently, a global panic let everyone focus more on vaccine news and the top search item being covid vaccine and started munching on online stream whatever they could,  top search item being: live stream, stream on, how to stream, tv stream, etc.</p>
+<p>I pulled data from <a href="https://trends.google.com/trends/explore?date=2019-11-11%202020-12-02&amp;q=ticket,vaccine,stream">here</a>.</p>
+<p>The date all this started happening, 1st of march 2020.</p>
 
 </div>
 </div>
