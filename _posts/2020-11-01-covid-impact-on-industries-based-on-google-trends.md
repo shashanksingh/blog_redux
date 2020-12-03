@@ -46,7 +46,7 @@ So I did, what I did best, try searching for some answers by experimenting with 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_google_trend_per_week_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ticket_google_trend_per_week</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">,</span><span class="s2">&quot;percentage&quot;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_google_trend_per_week_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ticket_google_trend_per_week</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span> <span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">,</span><span class="s2">&quot;ticket&quot;</span><span class="p">,</span> <span class="s2">&quot;vaccine&quot;</span><span class="p">,</span> <span class="s2">&quot;stream&quot;</span><span class="p">])</span>
 <span class="n">ticket_google_trend_per_week_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
@@ -80,34 +80,46 @@ So I did, what I did best, try searching for some answers by experimenting with 
     <tr style="text-align: right;">
       <th></th>
       <th>week</th>
-      <th>percentage</th>
+      <th>ticket</th>
+      <th>vaccine</th>
+      <th>stream</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>2019-01-13</td>
-      <td>94</td>
+      <td>2019-11-17</td>
+      <td>66</td>
+      <td>12</td>
+      <td>67</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2019-01-20</td>
-      <td>87</td>
+      <td>2019-11-24</td>
+      <td>66</td>
+      <td>10</td>
+      <td>67</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2019-01-27</td>
-      <td>87</td>
+      <td>2019-12-01</td>
+      <td>67</td>
+      <td>11</td>
+      <td>72</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2019-02-03</td>
-      <td>84</td>
+      <td>2019-12-08</td>
+      <td>65</td>
+      <td>10</td>
+      <td>61</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2019-02-10</td>
-      <td>85</td>
+      <td>2019-12-15</td>
+      <td>65</td>
+      <td>10</td>
+      <td>69</td>
     </tr>
   </tbody>
 </table>
@@ -129,13 +141,16 @@ So I did, what I did best, try searching for some answers by experimenting with 
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">ticket_google_trend_per_week_df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span>
-    <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="s1">&#39;scales&#39;</span><span class="p">,</span> <span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
-<span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;week:T&#39;</span><span class="p">),</span>
-    <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;percentage:Q&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)),</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticket_google_trend_per_week_melted_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">ticket_google_trend_per_week_df</span><span class="p">,</span><span class="n">id_vars</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;week&quot;</span><span class="p">],</span><span class="n">var_name</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;types&quot;</span><span class="p">])</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">ticket_google_trend_per_week_melted_df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_area</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;week&#39;</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s2">&quot;value:Q&quot;</span><span class="p">,</span> <span class="n">stack</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;types&#39;</span><span class="p">,</span>
+    <span class="n">strokeDash</span><span class="o">=</span><span class="s1">&#39;types&#39;</span><span class="p">,</span>
 <span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
-    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">850</span><span class="p">,</span>
 <span class="p">)</span>
 </pre></div>
 
@@ -151,12 +166,12 @@ So I did, what I did best, try searching for some answers by experimenting with 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
-<div id="altair-viz-6d4d2950c5ed4f579ba1ab61c164c63d"></div>
+<div id="altair-viz-9fdb326cea8f4f27b95f2fe2549999fe"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-6d4d2950c5ed4f579ba1ab61c164c63d") {
-      outputDiv = document.getElementById("altair-viz-6d4d2950c5ed4f579ba1ab61c164c63d");
+    if (outputDiv.id !== "altair-viz-9fdb326cea8f4f27b95f2fe2549999fe") {
+      outputDiv = document.getElementById("altair-viz-9fdb326cea8f4f27b95f2fe2549999fe");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -198,7 +213,7 @@ So I did, what I did best, try searching for some answers by experimenting with 
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-7de4ae80c4d7e361ad293ccf3b8629f7"}, "mark": "line", "encoding": {"x": {"type": "temporal", "field": "week"}, "y": {"type": "quantitative", "field": "percentage"}}, "selection": {"selector008": {"type": "interval", "bind": "scales", "encodings": ["x"]}}, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-7de4ae80c4d7e361ad293ccf3b8629f7": [{"week": "2019-01-13", "percentage": "94"}, {"week": "2019-01-20", "percentage": "87"}, {"week": "2019-01-27", "percentage": "87"}, {"week": "2019-02-03", "percentage": "84"}, {"week": "2019-02-10", "percentage": "85"}, {"week": "2019-02-17", "percentage": "85"}, {"week": "2019-02-24", "percentage": "81"}, {"week": "2019-03-03", "percentage": "84"}, {"week": "2019-03-10", "percentage": "85"}, {"week": "2019-03-17", "percentage": "86"}, {"week": "2019-03-24", "percentage": "86"}, {"week": "2019-03-31", "percentage": "84"}, {"week": "2019-04-07", "percentage": "81"}, {"week": "2019-04-14", "percentage": "82"}, {"week": "2019-04-21", "percentage": "85"}, {"week": "2019-04-28", "percentage": "82"}, {"week": "2019-05-05", "percentage": "80"}, {"week": "2019-05-12", "percentage": "85"}, {"week": "2019-05-19", "percentage": "81"}, {"week": "2019-05-26", "percentage": "86"}, {"week": "2019-06-02", "percentage": "86"}, {"week": "2019-06-09", "percentage": "90"}, {"week": "2019-06-16", "percentage": "10"}, {"week": "2019-06-23", "percentage": "92"}, {"week": "2019-06-30", "percentage": "94"}, {"week": "2019-07-07", "percentage": "94"}, {"week": "2019-07-14", "percentage": "92"}, {"week": "2019-07-21", "percentage": "91"}, {"week": "2019-07-28", "percentage": "90"}, {"week": "2019-08-04", "percentage": "85"}, {"week": "2019-08-11", "percentage": "87"}, {"week": "2019-08-18", "percentage": "86"}, {"week": "2019-08-25", "percentage": "84"}, {"week": "2019-09-01", "percentage": "83"}, {"week": "2019-09-08", "percentage": "79"}, {"week": "2019-09-15", "percentage": "77"}, {"week": "2019-09-22", "percentage": "79"}, {"week": "2019-09-29", "percentage": "77"}, {"week": "2019-10-06", "percentage": "78"}, {"week": "2019-10-13", "percentage": "79"}, {"week": "2019-10-20", "percentage": "82"}, {"week": "2019-10-27", "percentage": "81"}, {"week": "2019-11-03", "percentage": "80"}, {"week": "2019-11-10", "percentage": "77"}, {"week": "2019-11-17", "percentage": "75"}, {"week": "2019-11-24", "percentage": "82"}, {"week": "2019-12-01", "percentage": "76"}, {"week": "2019-12-08", "percentage": "77"}, {"week": "2019-12-15", "percentage": "80"}, {"week": "2019-12-22", "percentage": "87"}, {"week": "2019-12-29", "percentage": "86"}, {"week": "2020-01-05", "percentage": "88"}, {"week": "2020-01-12", "percentage": "89"}, {"week": "2020-01-19", "percentage": "84"}, {"week": "2020-01-26", "percentage": "77"}, {"week": "2020-02-02", "percentage": "76"}, {"week": "2020-02-09", "percentage": "73"}, {"week": "2020-02-16", "percentage": "75"}, {"week": "2020-02-23", "percentage": "74"}, {"week": "2020-03-01", "percentage": "70"}, {"week": "2020-03-08", "percentage": "83"}, {"week": "2020-03-15", "percentage": "58"}, {"week": "2020-03-22", "percentage": "39"}, {"week": "2020-03-29", "percentage": "28"}, {"week": "2020-04-05", "percentage": "24"}, {"week": "2020-04-12", "percentage": "24"}, {"week": "2020-04-19", "percentage": "24"}, {"week": "2020-04-26", "percentage": "24"}, {"week": "2020-05-03", "percentage": "26"}, {"week": "2020-05-10", "percentage": "28"}, {"week": "2020-05-17", "percentage": "35"}, {"week": "2020-05-24", "percentage": "36"}, {"week": "2020-05-31", "percentage": "41"}, {"week": "2020-06-07", "percentage": "43"}, {"week": "2020-06-14", "percentage": "42"}, {"week": "2020-06-21", "percentage": "44"}, {"week": "2020-06-28", "percentage": "48"}, {"week": "2020-07-05", "percentage": "48"}, {"week": "2020-07-12", "percentage": "45"}, {"week": "2020-07-19", "percentage": "46"}, {"week": "2020-07-26", "percentage": "44"}, {"week": "2020-08-02", "percentage": "44"}, {"week": "2020-08-09", "percentage": "45"}, {"week": "2020-08-16", "percentage": "44"}, {"week": "2020-08-23", "percentage": "44"}, {"week": "2020-08-30", "percentage": "45"}, {"week": "2020-09-06", "percentage": "45"}, {"week": "2020-09-13", "percentage": "44"}, {"week": "2020-09-20", "percentage": "44"}, {"week": "2020-09-27", "percentage": "46"}, {"week": "2020-10-04", "percentage": "46"}, {"week": "2020-10-11", "percentage": "47"}, {"week": "2020-10-18", "percentage": "48"}, {"week": "2020-10-25", "percentage": "46"}, {"week": "2020-11-01", "percentage": "43"}, {"week": "2020-11-08", "percentage": "46"}, {"week": "2020-11-15", "percentage": "46"}, {"week": "2020-11-22", "percentage": "47"}, {"week": "2020-11-29", "percentage": "47"}]}}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-a256a787be23fd85ed1fba85fb22d3f0"}, "mark": {"type": "area", "opacity": 0.3}, "encoding": {"color": {"type": "nominal", "field": "types"}, "strokeDash": {"type": "nominal", "field": "types"}, "x": {"type": "nominal", "field": "week"}, "y": {"type": "quantitative", "field": "value", "stack": null}}, "height": 400, "width": 850, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-a256a787be23fd85ed1fba85fb22d3f0": [{"week": "2019-11-17", "types": "ticket", "value": "66"}, {"week": "2019-11-24", "types": "ticket", "value": "66"}, {"week": "2019-12-01", "types": "ticket", "value": "67"}, {"week": "2019-12-08", "types": "ticket", "value": "65"}, {"week": "2019-12-15", "types": "ticket", "value": "65"}, {"week": "2019-12-22", "types": "ticket", "value": "69"}, {"week": "2019-12-29", "types": "ticket", "value": "73"}, {"week": "2020-01-05", "types": "ticket", "value": "67"}, {"week": "2020-01-12", "types": "ticket", "value": "65"}, {"week": "2020-01-19", "types": "ticket", "value": "63"}, {"week": "2020-01-26", "types": "ticket", "value": "63"}, {"week": "2020-02-02", "types": "ticket", "value": "63"}, {"week": "2020-02-09", "types": "ticket", "value": "61"}, {"week": "2020-02-16", "types": "ticket", "value": "64"}, {"week": "2020-02-23", "types": "ticket", "value": "63"}, {"week": "2020-03-01", "types": "ticket", "value": "62"}, {"week": "2020-03-08", "types": "ticket", "value": "58"}, {"week": "2020-03-15", "types": "ticket", "value": "41"}, {"week": "2020-03-22", "types": "ticket", "value": "28"}, {"week": "2020-03-29", "types": "ticket", "value": "26"}, {"week": "2020-04-05", "types": "ticket", "value": "24"}, {"week": "2020-04-12", "types": "ticket", "value": "23"}, {"week": "2020-04-19", "types": "ticket", "value": "23"}, {"week": "2020-04-26", "types": "ticket", "value": "26"}, {"week": "2020-05-03", "types": "ticket", "value": "26"}, {"week": "2020-05-10", "types": "ticket", "value": "31"}, {"week": "2020-05-17", "types": "ticket", "value": "31"}, {"week": "2020-05-24", "types": "ticket", "value": "30"}, {"week": "2020-05-31", "types": "ticket", "value": "33"}, {"week": "2020-06-07", "types": "ticket", "value": "32"}, {"week": "2020-06-14", "types": "ticket", "value": "31"}, {"week": "2020-06-21", "types": "ticket", "value": "34"}, {"week": "2020-06-28", "types": "ticket", "value": "36"}, {"week": "2020-07-05", "types": "ticket", "value": "35"}, {"week": "2020-07-12", "types": "ticket", "value": "34"}, {"week": "2020-07-19", "types": "ticket", "value": "36"}, {"week": "2020-07-26", "types": "ticket", "value": "37"}, {"week": "2020-08-02", "types": "ticket", "value": "38"}, {"week": "2020-08-09", "types": "ticket", "value": "38"}, {"week": "2020-08-16", "types": "ticket", "value": "36"}, {"week": "2020-08-23", "types": "ticket", "value": "36"}, {"week": "2020-08-30", "types": "ticket", "value": "41"}, {"week": "2020-09-06", "types": "ticket", "value": "47"}, {"week": "2020-09-13", "types": "ticket", "value": "47"}, {"week": "2020-09-20", "types": "ticket", "value": "41"}, {"week": "2020-09-27", "types": "ticket", "value": "41"}, {"week": "2020-10-04", "types": "ticket", "value": "39"}, {"week": "2020-10-11", "types": "ticket", "value": "36"}, {"week": "2020-10-18", "types": "ticket", "value": "36"}, {"week": "2020-10-25", "types": "ticket", "value": "36"}, {"week": "2020-11-01", "types": "ticket", "value": "35"}, {"week": "2020-11-08", "types": "ticket", "value": "34"}, {"week": "2020-11-15", "types": "ticket", "value": "36"}, {"week": "2020-11-22", "types": "ticket", "value": "36"}, {"week": "2020-11-29", "types": "ticket", "value": "39"}, {"week": "2019-11-17", "types": "vaccine", "value": "12"}, {"week": "2019-11-24", "types": "vaccine", "value": "10"}, {"week": "2019-12-01", "types": "vaccine", "value": "11"}, {"week": "2019-12-08", "types": "vaccine", "value": "10"}, {"week": "2019-12-15", "types": "vaccine", "value": "10"}, {"week": "2019-12-22", "types": "vaccine", "value": "8"}, {"week": "2019-12-29", "types": "vaccine", "value": "9"}, {"week": "2020-01-05", "types": "vaccine", "value": "10"}, {"week": "2020-01-12", "types": "vaccine", "value": "11"}, {"week": "2020-01-19", "types": "vaccine", "value": "12"}, {"week": "2020-01-26", "types": "vaccine", "value": "15"}, {"week": "2020-02-02", "types": "vaccine", "value": "13"}, {"week": "2020-02-09", "types": "vaccine", "value": "13"}, {"week": "2020-02-16", "types": "vaccine", "value": "12"}, {"week": "2020-02-23", "types": "vaccine", "value": "19"}, {"week": "2020-03-01", "types": "vaccine", "value": "23"}, {"week": "2020-03-08", "types": "vaccine", "value": "38"}, {"week": "2020-03-15", "types": "vaccine", "value": "53"}, {"week": "2020-03-22", "types": "vaccine", "value": "48"}, {"week": "2020-03-29", "types": "vaccine", "value": "42"}, {"week": "2020-04-05", "types": "vaccine", "value": "38"}, {"week": "2020-04-12", "types": "vaccine", "value": "34"}, {"week": "2020-04-19", "types": "vaccine", "value": "39"}, {"week": "2020-04-26", "types": "vaccine", "value": "37"}, {"week": "2020-05-03", "types": "vaccine", "value": "43"}, {"week": "2020-05-10", "types": "vaccine", "value": "37"}, {"week": "2020-05-17", "types": "vaccine", "value": "41"}, {"week": "2020-05-24", "types": "vaccine", "value": "29"}, {"week": "2020-05-31", "types": "vaccine", "value": "27"}, {"week": "2020-06-07", "types": "vaccine", "value": "28"}, {"week": "2020-06-14", "types": "vaccine", "value": "30"}, {"week": "2020-06-21", "types": "vaccine", "value": "32"}, {"week": "2020-06-28", "types": "vaccine", "value": "36"}, {"week": "2020-07-05", "types": "vaccine", "value": "35"}, {"week": "2020-07-12", "types": "vaccine", "value": "57"}, {"week": "2020-07-19", "types": "vaccine", "value": "51"}, {"week": "2020-07-26", "types": "vaccine", "value": "41"}, {"week": "2020-08-02", "types": "vaccine", "value": "40"}, {"week": "2020-08-09", "types": "vaccine", "value": "62"}, {"week": "2020-08-16", "types": "vaccine", "value": "39"}, {"week": "2020-08-23", "types": "vaccine", "value": "34"}, {"week": "2020-08-30", "types": "vaccine", "value": "36"}, {"week": "2020-09-06", "types": "vaccine", "value": "38"}, {"week": "2020-09-13", "types": "vaccine", "value": "36"}, {"week": "2020-09-20", "types": "vaccine", "value": "34"}, {"week": "2020-09-27", "types": "vaccine", "value": "34"}, {"week": "2020-10-04", "types": "vaccine", "value": "32"}, {"week": "2020-10-11", "types": "vaccine", "value": "34"}, {"week": "2020-10-18", "types": "vaccine", "value": "34"}, {"week": "2020-10-25", "types": "vaccine", "value": "32"}, {"week": "2020-11-01", "types": "vaccine", "value": "27"}, {"week": "2020-11-08", "types": "vaccine", "value": "69"}, {"week": "2020-11-15", "types": "vaccine", "value": "61"}, {"week": "2020-11-22", "types": "vaccine", "value": "52"}, {"week": "2020-11-29", "types": "vaccine", "value": "51"}, {"week": "2019-11-17", "types": "stream", "value": "67"}, {"week": "2019-11-24", "types": "stream", "value": "67"}, {"week": "2019-12-01", "types": "stream", "value": "72"}, {"week": "2019-12-08", "types": "stream", "value": "61"}, {"week": "2019-12-15", "types": "stream", "value": "69"}, {"week": "2019-12-22", "types": "stream", "value": "66"}, {"week": "2019-12-29", "types": "stream", "value": "71"}, {"week": "2020-01-05", "types": "stream", "value": "62"}, {"week": "2020-01-12", "types": "stream", "value": "62"}, {"week": "2020-01-19", "types": "stream", "value": "71"}, {"week": "2020-01-26", "types": "stream", "value": "64"}, {"week": "2020-02-02", "types": "stream", "value": "65"}, {"week": "2020-02-09", "types": "stream", "value": "61"}, {"week": "2020-02-16", "types": "stream", "value": "63"}, {"week": "2020-02-23", "types": "stream", "value": "69"}, {"week": "2020-03-01", "types": "stream", "value": "57"}, {"week": "2020-03-08", "types": "stream", "value": "62"}, {"week": "2020-03-15", "types": "stream", "value": "73"}, {"week": "2020-03-22", "types": "stream", "value": "78"}, {"week": "2020-03-29", "types": "stream", "value": "68"}, {"week": "2020-04-05", "types": "stream", "value": "68"}, {"week": "2020-04-12", "types": "stream", "value": "66"}, {"week": "2020-04-19", "types": "stream", "value": "66"}, {"week": "2020-04-26", "types": "stream", "value": "60"}, {"week": "2020-05-03", "types": "stream", "value": "56"}, {"week": "2020-05-10", "types": "stream", "value": "58"}, {"week": "2020-05-17", "types": "stream", "value": "54"}, {"week": "2020-05-24", "types": "stream", "value": "58"}, {"week": "2020-05-31", "types": "stream", "value": "56"}, {"week": "2020-06-07", "types": "stream", "value": "54"}, {"week": "2020-06-14", "types": "stream", "value": "55"}, {"week": "2020-06-21", "types": "stream", "value": "55"}, {"week": "2020-06-28", "types": "stream", "value": "55"}, {"week": "2020-07-05", "types": "stream", "value": "55"}, {"week": "2020-07-12", "types": "stream", "value": "59"}, {"week": "2020-07-19", "types": "stream", "value": "58"}, {"week": "2020-07-26", "types": "stream", "value": "59"}, {"week": "2020-08-02", "types": "stream", "value": "61"}, {"week": "2020-08-09", "types": "stream", "value": "63"}, {"week": "2020-08-16", "types": "stream", "value": "67"}, {"week": "2020-08-23", "types": "stream", "value": "63"}, {"week": "2020-08-30", "types": "stream", "value": "61"}, {"week": "2020-09-06", "types": "stream", "value": "67"}, {"week": "2020-09-13", "types": "stream", "value": "72"}, {"week": "2020-09-20", "types": "stream", "value": "66"}, {"week": "2020-09-27", "types": "stream", "value": "69"}, {"week": "2020-10-04", "types": "stream", "value": "63"}, {"week": "2020-10-11", "types": "stream", "value": "59"}, {"week": "2020-10-18", "types": "stream", "value": "68"}, {"week": "2020-10-25", "types": "stream", "value": "60"}, {"week": "2020-11-01", "types": "stream", "value": "68"}, {"week": "2020-11-08", "types": "stream", "value": "58"}, {"week": "2020-11-15", "types": "stream", "value": "57"}, {"week": "2020-11-22", "types": "stream", "value": "58"}, {"week": "2020-11-29", "types": "stream", "value": "10"}]}}, {"mode": "vega-lite"});
 </script>
 </div>
 
