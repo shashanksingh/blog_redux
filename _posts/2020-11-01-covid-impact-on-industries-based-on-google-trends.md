@@ -33,12 +33,6 @@ So I did, what I did best, try searching for some answers by experimenting with 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/2402_RC03/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("RELATED_QUERIES", {"comparisonItem":[{"keyword":"/m/05fjl2","geo":"","time":"2019-01-11 2020-12-01"}],"category":0,"property":""}, {"exploreQuery":"date=2019-01-11%202020-12-01&q=%2Fm%2F05fjl2","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -226,7 +220,7 @@ So I did, what I did best, try searching for some answers by experimenting with 
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So my inference was the moment Covid-19 hit prime time globally, people stopped looking for tickets, top search items being: the ticket price, ticket booking, train ticket, online ticket, ticket flight, etc. Consequently, a global panic let everyone focus more on vaccine news and the top search item being covid vaccine and started munching on online stream whatever they could,  top search item being: live stream, stream on, how to stream, tv stream, etc.</p>
+<p>So my inference was the moment Covid-19 hit prime time globally, people stopped looking for tickets, top search items being: the ticket price, ticket booking, train ticket, online ticket, ticket flight, etc. Consequently, a global lockdown let everyone focus more on vaccine news and the top search item being covid vaccine and started munching on online stream whatever they could,  top search item being: live stream, stream on, how to stream, tv stream, etc.</p>
 <p>I pulled data from <a href="https://trends.google.com/trends/explore?date=2019-11-11%202020-12-02&amp;q=ticket,vaccine,stream">here</a>.</p>
 <p>The date all this started happening, 1st of march 2020.</p>
 
