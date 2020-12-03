@@ -165,12 +165,12 @@ So I did, what I did best, try searching for some answers by experimenting with 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
-<div id="altair-viz-58250ccb7f5443dea1d59665f3f0ee57"></div>
+<div id="altair-viz-18b2c5734a8444838996efd5c9e4fe92"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-58250ccb7f5443dea1d59665f3f0ee57") {
-      outputDiv = document.getElementById("altair-viz-58250ccb7f5443dea1d59665f3f0ee57");
+    if (outputDiv.id !== "altair-viz-18b2c5734a8444838996efd5c9e4fe92") {
+      outputDiv = document.getElementById("altair-viz-18b2c5734a8444838996efd5c9e4fe92");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
