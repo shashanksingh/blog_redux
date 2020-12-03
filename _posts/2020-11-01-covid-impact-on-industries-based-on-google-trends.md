@@ -228,7 +228,7 @@ So I did, what I did best, try searching for some answers by experimenting with 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So my inference was the moment Covid-19 hit prime time globally, people stopped looking for tickets, top search items being: the ticket price, ticket booking, train ticket, online ticket, ticket flight, etc. Consequently, a global panic let everyone focus more on vaccine news and the top search item being covid vaccine and started munching on online stream whatever they could,  top search item being: live stream, stream on, how to stream, tv stream, etc.</p>
 <p>I pulled data from <a href="https://trends.google.com/trends/explore?date=2019-11-11%202020-12-02&amp;q=ticket,vaccine,stream">here</a>.</p>
-<p>The date all this started happening 1st of march 2020.</p>
+<p>The date all this started happening, 1st of march 2020.</p>
 
 </div>
 </div>
