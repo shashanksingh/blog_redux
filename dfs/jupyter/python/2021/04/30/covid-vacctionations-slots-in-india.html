@@ -13,11 +13,11 @@
 <link rel="canonical" href="https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2021/04/30/covid-vacctionations-slots-in-india.html" />
 <meta property="og:url" content="https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2021/04/30/covid-vacctionations-slots-in-india.html" />
 <meta property="og:site_name" content="Quick and Dirty Data Stories" />
-<meta property="og:image" content="https://shashanksingh.github.io/blog_redux/images/statistics.png" />
+<meta property="og:image" content="https://shashanksingh.github.io/blog_redux/images/visualization.png" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-04-30T00:00:00-05:00" />
 <script type="application/ld+json">
-{"url":"https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2021/04/30/covid-vacctionations-slots-in-india.html","@type":"BlogPosting","headline":"Covid vs India","dateModified":"2021-04-30T00:00:00-05:00","datePublished":"2021-04-30T00:00:00-05:00","image":"https://shashanksingh.github.io/blog_redux/images/statistics.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2021/04/30/covid-vacctionations-slots-in-india.html"},"description":"One of the biggest question I have been wondering is , with every adult allowed now to register, Where are vaccines slots available in india ? How can I make this decision programmitcally because trying to find information on government website is rather “sisyphus task”.","@context":"https://schema.org"}</script>
+{"url":"https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2021/04/30/covid-vacctionations-slots-in-india.html","@type":"BlogPosting","headline":"Covid vs India","dateModified":"2021-04-30T00:00:00-05:00","datePublished":"2021-04-30T00:00:00-05:00","image":"https://shashanksingh.github.io/blog_redux/images/visualization.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://shashanksingh.github.io/blog_redux/dfs/jupyter/python/2021/04/30/covid-vacctionations-slots-in-india.html"},"description":"One of the biggest question I have been wondering is , with every adult allowed now to register, Where are vaccines slots available in india ? How can I make this decision programmitcally because trying to find information on government website is rather “sisyphus task”.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog_redux/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shashanksingh.github.io/blog_redux/feed.xml" title="Quick and Dirty Data Stories" /><!-- the google_analytics_id gets auto inserted from the config file -->
 
@@ -84,7 +84,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      6 min read
+      9 min read
     
 </span></p>
 
@@ -119,7 +119,7 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
-<li>%of free vs paid ,( piechart ?)</li>
+<li>%of free vs paid </li>
 <li>how many centers per state and who has best ratio against population? ( chart of top 5 and show it on map )</li>
 <li>at current allocation how many days will it take to vaccinate 18+?</li>
 <li>what's ground reality for Key states like Delhi, Maharastra , Tamil Nadu</li>
@@ -130,7 +130,16 @@ window.onload = wrap_img;
 <li>Top 5 States Running ahead of everyone else.</li>
 <li>When can I latest find slots in Delhi, Bombay, Chennai and Bangalore for people between 18-45</li>
 </ol>
-<p>Thanks to <a href="https://github.com/bhattbhavesh91/cowin-vaccination-slot-availability/blob/main/cowin-api-availability.ipynb">https://github.com/bhattbhavesh91/cowin-vaccination-slot-availability/blob/main/cowin-api-availability.ipynb</a> for doing actual work, I picked up loads of stuff from there.</p>
+<p>Credits :</p>
+<ul>
+<li>Thanks to Github User @bhattbhavesh91 for Cowin app analysis notebook </li>
+<li>Also thanks to Github User @AnujTiwari for Indian Shape file </li>
+</ul>
+<p>Source :</p>
+<ul>
+<li><a href="https://github.com/bhattbhavesh91/cowin-vaccination-slot-availability/blob/main/cowin-api-availability.ipynb">https://github.com/bhattbhavesh91/cowin-vaccination-slot-availability/blob/main/cowin-api-availability.ipynb</a> </li>
+<li><a href="https://github.com/AnujTiwari/India-State-and-Country-Shapefile-Updated-Jan-2020">https://github.com/AnujTiwari/India-State-and-Country-Shapefile-Updated-Jan-2020</a></li>
+</ul>
 
 </div>
 </div>
@@ -255,6 +264,7 @@ window.onload = wrap_img;
 <span class="n">CENTERS</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Center</span><span class="p">)</span>
 <span class="n">SESSIONS</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="n">Session</span><span class="p">)</span>
 <span class="n">NO_SLOT_AVAILABLE</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">INDIA_SHAPE_MAP</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;geo_data/india_state_boundary.shp&#39;</span><span class="p">)</span>
 
 <span class="n">MAX_NUMBER_OF_STATES</span> <span class="o">=</span> <span class="mi">40</span>
 
@@ -270,6 +280,219 @@ window.onload = wrap_img;
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># color = alt.condition(multi,</span>
+<span class="c1">#                   alt.Color(&#39;count&#39;, type=&#39;ordinal&#39;,</span>
+<span class="c1">#                   scale=alt.Scale(scheme=&#39;yellowgreenblue&#39;)),</span>
+<span class="c1">#                   alt.value(&#39;lightgray&#39;))</span>
+<span class="c1"># hover = alt.selection(type=&#39;single&#39;, on=&#39;mouseover&#39;, nearest=True,</span>
+<span class="c1">#                       fields=[&#39;x&#39;, &#39;y&#39;])#Creating an altair map </span>
+<span class="n">layerchoro</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">INDIA_SHAPE_MAP</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">(</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span> 
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span> 
+    <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">800</span>
+<span class="p">)</span><span class="c1"># Legend</span>
+
+<span class="c1"># c1 = alt.layer(choro).configure_legend(</span>
+<span class="c1">#     orient = &#39;bottom-right&#39;,</span>
+<span class="c1">#     direction = &#39;horizontal&#39;,</span>
+<span class="c1">#     padding = 10,</span>
+<span class="c1">#     rowPadding = 15</span>
+<span class="c1"># )#Adding Labels</span>
+
+<span class="c1"># labels = alt.Chart(gdf).mark_text().encode(</span>
+<span class="c1">#     longitude=&#39;x&#39;,</span>
+<span class="c1">#     latitude=&#39;y&#39;,</span>
+<span class="c1">#     text=&#39;count&#39;,</span>
+<span class="c1">#     size=alt.value(8),</span>
+<span class="c1">#     opacity=alt.value(0.6)</span>
+<span class="c1"># )</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">INDIA_SHAPE_MAP</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">(</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span> 
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;count&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">project</span><span class="p">(</span>
+    <span class="n">scale</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
+<span class="p">)</span>
+<span class="c1"># (c1+labels).configure_view(strokeWidth=0)</span>
+<span class="n">layerchoro</span><span class="o">+</span> <span class="n">c2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/vegalite/v4/api.py</span> in <span class="ansi-cyan-fg">to_dict</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    371</span> 
+<span class="ansi-green-intense-fg ansi-bold">    372</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">             </span>dct <span class="ansi-blue-fg">=</span> super<span class="ansi-blue-fg">(</span>TopLevelMixin<span class="ansi-blue-fg">,</span> copy<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    374</span>         <span class="ansi-green-fg">except</span> jsonschema<span class="ansi-blue-fg">.</span>ValidationError<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    375</span>             dct <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">to_dict</span><span class="ansi-blue-fg">(self, validate, ignore, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">    323</span>             result <span class="ansi-blue-fg">=</span> _todict<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">=</span>sub_validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    324</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 325</span><span class="ansi-red-fg">             result = _todict(
+</span><span class="ansi-green-intense-fg ansi-bold">    326</span>                 <span class="ansi-blue-fg">{</span>k<span class="ansi-blue-fg">:</span> v <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_kwds<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">if</span> k <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> ignore<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    327</span>                 validate<span class="ansi-blue-fg">=</span>sub_validate<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 60</span><span class="ansi-red-fg">         return {
+</span><span class="ansi-green-intense-fg ansi-bold">     61</span>             k<span class="ansi-blue-fg">:</span> _todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">&lt;dictcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+<span class="ansi-green-fg">---&gt; 61</span><span class="ansi-red-fg">             </span>k<span class="ansi-blue-fg">:</span> _todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span>             <span class="ansi-green-fg">if</span> v <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> Undefined
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     56</span>         <span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">     56</span>         <span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     54</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Convert an object to a dict representation.&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">     55</span>     <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> SchemaBase<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 56</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/vegalite/v4/api.py</span> in <span class="ansi-cyan-fg">to_dict</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    371</span> 
+<span class="ansi-green-intense-fg ansi-bold">    372</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 373</span><span class="ansi-red-fg">             </span>dct <span class="ansi-blue-fg">=</span> super<span class="ansi-blue-fg">(</span>TopLevelMixin<span class="ansi-blue-fg">,</span> copy<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    374</span>         <span class="ansi-green-fg">except</span> jsonschema<span class="ansi-blue-fg">.</span>ValidationError<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    375</span>             dct <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">None</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">to_dict</span><span class="ansi-blue-fg">(self, validate, ignore, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">    323</span>             result <span class="ansi-blue-fg">=</span> _todict<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">=</span>sub_validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    324</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 325</span><span class="ansi-red-fg">             result = _todict(
+</span><span class="ansi-green-intense-fg ansi-bold">    326</span>                 <span class="ansi-blue-fg">{</span>k<span class="ansi-blue-fg">:</span> v <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_kwds<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">if</span> k <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> ignore<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    327</span>                 validate<span class="ansi-blue-fg">=</span>sub_validate<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 60</span><span class="ansi-red-fg">         return {
+</span><span class="ansi-green-intense-fg ansi-bold">     61</span>             k<span class="ansi-blue-fg">:</span> _todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">&lt;dictcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+<span class="ansi-green-fg">---&gt; 61</span><span class="ansi-red-fg">             </span>k<span class="ansi-blue-fg">:</span> _todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span>             <span class="ansi-green-fg">if</span> v <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> Undefined
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     54</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Convert an object to a dict representation.&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">     55</span>     <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> SchemaBase<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 56</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">to_dict</span><span class="ansi-blue-fg">(self, validate, ignore, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">    323</span>             result <span class="ansi-blue-fg">=</span> _todict<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">=</span>sub_validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    324</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 325</span><span class="ansi-red-fg">             result = _todict(
+</span><span class="ansi-green-intense-fg ansi-bold">    326</span>                 <span class="ansi-blue-fg">{</span>k<span class="ansi-blue-fg">:</span> v <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>_kwds<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">if</span> k <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> ignore<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    327</span>                 validate<span class="ansi-blue-fg">=</span>sub_validate<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 60</span><span class="ansi-red-fg">         return {
+</span><span class="ansi-green-intense-fg ansi-bold">     61</span>             k<span class="ansi-blue-fg">:</span> _todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">&lt;dictcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+<span class="ansi-green-fg">---&gt; 61</span><span class="ansi-red-fg">             </span>k<span class="ansi-blue-fg">:</span> _todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span>             <span class="ansi-green-fg">for</span> k<span class="ansi-blue-fg">,</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span>             <span class="ansi-green-fg">if</span> v <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> Undefined
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     56</span>         <span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-intense-fg ansi-bold">     56</span>         <span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 58</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> dict<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span>         return {
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/utils/schemapi.py</span> in <span class="ansi-cyan-fg">_todict</span><span class="ansi-blue-fg">(obj, validate, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     54</span>     <span class="ansi-blue-fg">&#34;&#34;&#34;Convert an object to a dict representation.&#34;&#34;&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">     55</span>     <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> SchemaBase<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 56</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> obj<span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span>validate<span class="ansi-blue-fg">=</span>validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">=</span>context<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>     <span class="ansi-green-fg">elif</span> isinstance<span class="ansi-blue-fg">(</span>obj<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">(</span>list<span class="ansi-blue-fg">,</span> tuple<span class="ansi-blue-fg">,</span> np<span class="ansi-blue-fg">.</span>ndarray<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>_todict<span class="ansi-blue-fg">(</span>v<span class="ansi-blue-fg">,</span> validate<span class="ansi-blue-fg">,</span> context<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">for</span> v <span class="ansi-green-fg">in</span> obj<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/Library/Python/3.8/lib/python/site-packages/altair/vegalite/v4/schema/channels.py</span> in <span class="ansi-cyan-fg">to_dict</span><span class="ansi-blue-fg">(self, validate, ignore, context)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>             <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> <span class="ansi-blue-fg">(</span>type_in_shorthand <span class="ansi-green-fg">or</span> type_defined_explicitly<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>                 <span class="ansi-green-fg">if</span> isinstance<span class="ansi-blue-fg">(</span>context<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;data&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 40</span><span class="ansi-red-fg">                     raise ValueError(&#34;{} encoding field is specified without a type; &#34;
+</span><span class="ansi-green-intense-fg ansi-bold">     41</span>                                      <span class="ansi-blue-fg">&#34;the type cannot be inferred because it does not &#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">     42</span>                                      &#34;match any column in the data.&#34;.format(shorthand))
+
+<span class="ansi-red-fg">ValueError</span>: state encoding field is specified without a type; the type cannot be inferred because it does not match any column in the data.</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>alt.LayerChart(...)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -476,7 +699,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SESSION_DF</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SESSION_DF</span><span class="o">.</span><span class="n">head</span><span class="p">()[[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="s2">&quot;available_capacity&quot;</span><span class="p">,</span><span class="s2">&quot;vaccine&quot;</span><span class="p">,</span><span class="s2">&quot;min_age_limit&quot;</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -508,77 +731,47 @@ window.onload = wrap_img;
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>session_uuid</th>
       <th>date</th>
-      <th>query_date</th>
       <th>available_capacity</th>
-      <th>min_age_limit</th>
       <th>vaccine</th>
-      <th>center_id</th>
-      <th>district_id</th>
-      <th>session_created_at</th>
+      <th>min_age_limit</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>207fd35f-888d-460d-8304-f0b99f9a13a0</td>
-      <td>03-05-2021</td>
       <td>03-05-2021</td>
       <td>49.0</td>
-      <td>45</td>
       <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027502</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>88373311-b0da-40f6-bbea-ee029f86eb1c</td>
-      <td>04-05-2021</td>
       <td>04-05-2021</td>
       <td>50.0</td>
-      <td>45</td>
       <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.264174</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>8ef1ec99-7318-4cb6-bc66-9ed3675f9a48</td>
-      <td>05-05-2021</td>
       <td>05-05-2021</td>
       <td>50.0</td>
-      <td>45</td>
       <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.412119</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>bd311aec-c4cf-45f3-8f06-2dbc7b634de4</td>
-      <td>06-05-2021</td>
       <td>06-05-2021</td>
       <td>50.0</td>
-      <td>45</td>
       <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.628695</td>
+      <td>45</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>f6022b09-7079-43fe-a48c-dc82e04a0058</td>
-      <td>08-05-2021</td>
       <td>08-05-2021</td>
       <td>49.0</td>
-      <td>45</td>
       <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.982494</td>
+      <td>45</td>
     </tr>
   </tbody>
 </table>
@@ -600,7 +793,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CENTER_DF</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CENTER_DF</span><span class="o">.</span><span class="n">head</span><span class="p">()[[</span><span class="s2">&quot;center_name&quot;</span><span class="p">,</span><span class="s2">&quot;state_name&quot;</span><span class="p">,</span><span class="s2">&quot;district_name&quot;</span><span class="p">,</span><span class="s2">&quot;fee_type&quot;</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -632,107 +825,47 @@ window.onload = wrap_img;
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>center_uuid</th>
-      <th>center_id</th>
       <th>center_name</th>
       <th>state_name</th>
       <th>district_name</th>
-      <th>block_name</th>
-      <th>pincode</th>
-      <th>lat</th>
-      <th>lng</th>
-      <th>from_hour</th>
-      <th>to_hour</th>
       <th>fee_type</th>
-      <th>district_id</th>
-      <th>center_created_at</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>68709bda-d461-4295-b453-0446e3c3836d</td>
-      <td>570779</td>
       <td>BJR Hospital</td>
       <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>Car Nicobar</td>
-      <td>744301</td>
-      <td>0</td>
-      <td>0</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
       <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027457</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>39004cf0-9221-4b91-a3ed-efbd4d129d25</td>
-      <td>639974</td>
       <td>MI Room DHQ 10</td>
       <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>Campbell Bay</td>
-      <td>744302</td>
-      <td>7</td>
-      <td>93</td>
-      <td>09:00:00</td>
-      <td>18:00:00</td>
       <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027546</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>4b6ad957-cc5c-489b-8b40-028512b83dbf</td>
-      <td>552109</td>
       <td>Campbellbay PHC</td>
       <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>Campbell Bay</td>
-      <td>744302</td>
-      <td>7</td>
-      <td>93</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
       <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027647</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>18036b66-4a41-4424-b5e5-672f5722ce6f</td>
-      <td>552108</td>
       <td>Nancowry CHC</td>
       <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>Nancowry</td>
-      <td>744303</td>
-      <td>7</td>
-      <td>93</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
       <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027704</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>e44f0c92-4368-4a4e-b0de-020095e84dfb</td>
-      <td>639986</td>
       <td>SMC 37 WING</td>
       <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>Car Nicobar</td>
-      <td>744301</td>
-      <td>9</td>
-      <td>92</td>
-      <td>09:00:00</td>
-      <td>18:00:00</td>
       <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027753</td>
     </tr>
   </tbody>
 </table>
@@ -867,7 +1000,7 @@ window.onload = wrap_img;
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">session_center_district_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;vaccination_slot_data.csv&quot;</span><span class="p">)</span>
-<span class="n">session_center_district_df</span>
+<span class="n">session_center_district_df</span><span class="p">[[</span><span class="s2">&quot;date&quot;</span><span class="p">,</span><span class="s2">&quot;center_name&quot;</span><span class="p">,</span><span class="s2">&quot;state_name&quot;</span><span class="p">,</span><span class="s2">&quot;district_name_x&quot;</span><span class="p">,</span><span class="s2">&quot;fee_type&quot;</span><span class="p">]]</span>
 </pre></div>
 
     </div>
@@ -899,168 +1032,56 @@ window.onload = wrap_img;
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>session_uuid</th>
       <th>date</th>
-      <th>query_date</th>
-      <th>available_capacity</th>
-      <th>min_age_limit</th>
-      <th>vaccine</th>
-      <th>center_id</th>
-      <th>district_id_x</th>
-      <th>session_created_at</th>
-      <th>center_uuid</th>
-      <th>...</th>
-      <th>lng</th>
-      <th>from_hour</th>
-      <th>to_hour</th>
+      <th>center_name</th>
+      <th>state_name</th>
+      <th>district_name_x</th>
       <th>fee_type</th>
-      <th>district_id_y</th>
-      <th>center_created_at</th>
-      <th>district_id</th>
-      <th>district_name_y</th>
-      <th>state_id</th>
-      <th>district_created_at</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>207fd35f-888d-460d-8304-f0b99f9a13a0</td>
       <td>03-05-2021</td>
-      <td>03-05-2021</td>
-      <td>49.0</td>
-      <td>45</td>
-      <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027502</td>
-      <td>68709bda-d461-4295-b453-0446e3c3836d</td>
-      <td>...</td>
-      <td>0</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027457</td>
-      <td>3</td>
+      <td>BJR Hospital</td>
+      <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>1</td>
-      <td>2021-05-03 16:22:15.927874</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>207fd35f-888d-460d-8304-f0b99f9a13a0</td>
       <td>03-05-2021</td>
-      <td>03-05-2021</td>
-      <td>49.0</td>
-      <td>45</td>
-      <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027502</td>
-      <td>60d78a27-077d-4d9e-b3a7-f0d78907f375</td>
-      <td>...</td>
-      <td>0</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.264162</td>
-      <td>3</td>
+      <td>BJR Hospital</td>
+      <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>1</td>
-      <td>2021-05-03 16:22:15.927874</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>207fd35f-888d-460d-8304-f0b99f9a13a0</td>
       <td>03-05-2021</td>
-      <td>03-05-2021</td>
-      <td>49.0</td>
-      <td>45</td>
-      <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027502</td>
-      <td>87a707cc-6929-4ff3-94cf-e0c7d5dfe750</td>
-      <td>...</td>
-      <td>0</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.412101</td>
-      <td>3</td>
+      <td>BJR Hospital</td>
+      <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>1</td>
-      <td>2021-05-03 16:22:15.927874</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>207fd35f-888d-460d-8304-f0b99f9a13a0</td>
       <td>03-05-2021</td>
-      <td>03-05-2021</td>
-      <td>49.0</td>
-      <td>45</td>
-      <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027502</td>
-      <td>887d3e0a-fd2a-4f69-9af7-9e8ce874d155</td>
-      <td>...</td>
-      <td>0</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.628681</td>
-      <td>3</td>
+      <td>BJR Hospital</td>
+      <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>1</td>
-      <td>2021-05-03 16:22:15.927874</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>207fd35f-888d-460d-8304-f0b99f9a13a0</td>
       <td>03-05-2021</td>
-      <td>03-05-2021</td>
-      <td>49.0</td>
-      <td>45</td>
-      <td></td>
-      <td>570779</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.027502</td>
-      <td>f4d8eb46-0c16-4f88-8afa-6bc40c91b2e0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>3</td>
-      <td>2021-05-03 16:22:25.781478</td>
-      <td>3</td>
+      <td>BJR Hospital</td>
+      <td>Andaman and Nicobar Islands</td>
       <td>Nicobar</td>
-      <td>1</td>
-      <td>2021-05-03 16:22:15.927874</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -1069,127 +1090,47 @@ window.onload = wrap_img;
     </tr>
     <tr>
       <th>1251756</th>
-      <td>aa1390fe-2b5f-46c3-aab1-8807035a210b</td>
       <td>04-05-2021</td>
-      <td>04-05-2021</td>
-      <td>10.0</td>
-      <td>45</td>
-      <td></td>
-      <td>343857</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.778635</td>
-      <td>ee1be1a2-ff91-4362-9cd8-68aa7492545c</td>
-      <td>...</td>
-      <td>70</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.778626</td>
-      <td>139</td>
+      <td>Government Hospital Diu</td>
+      <td>Daman and Diu</td>
       <td>Diu</td>
-      <td>37</td>
-      <td>2021-05-03 16:22:24.553471</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>1251757</th>
-      <td>aa1390fe-2b5f-46c3-aab1-8807035a210b</td>
       <td>04-05-2021</td>
-      <td>04-05-2021</td>
-      <td>10.0</td>
-      <td>45</td>
-      <td></td>
-      <td>343857</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.778635</td>
-      <td>c31e86c7-cb3f-4be5-9fcd-1cb1f3bacd3a</td>
-      <td>...</td>
-      <td>70</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.927269</td>
-      <td>139</td>
+      <td>Government Hospital Diu</td>
+      <td>Daman and Diu</td>
       <td>Diu</td>
-      <td>37</td>
-      <td>2021-05-03 16:22:24.553471</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>1251758</th>
-      <td>56c835d4-b1be-4df7-97de-20b88f3d61ee</td>
       <td>05-05-2021</td>
-      <td>05-05-2021</td>
-      <td>10.0</td>
-      <td>45</td>
-      <td></td>
-      <td>343857</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.927278</td>
-      <td>9143e567-5417-4623-abc1-ce6235b5f905</td>
-      <td>...</td>
-      <td>70</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.663340</td>
-      <td>139</td>
+      <td>Government Hospital Diu</td>
+      <td>Daman and Diu</td>
       <td>Diu</td>
-      <td>37</td>
-      <td>2021-05-03 16:22:24.553471</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>1251759</th>
-      <td>56c835d4-b1be-4df7-97de-20b88f3d61ee</td>
       <td>05-05-2021</td>
-      <td>05-05-2021</td>
-      <td>10.0</td>
-      <td>45</td>
-      <td></td>
-      <td>343857</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.927278</td>
-      <td>ee1be1a2-ff91-4362-9cd8-68aa7492545c</td>
-      <td>...</td>
-      <td>70</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.778626</td>
-      <td>139</td>
+      <td>Government Hospital Diu</td>
+      <td>Daman and Diu</td>
       <td>Diu</td>
-      <td>37</td>
-      <td>2021-05-03 16:22:24.553471</td>
+      <td>Free</td>
     </tr>
     <tr>
       <th>1251760</th>
-      <td>56c835d4-b1be-4df7-97de-20b88f3d61ee</td>
       <td>05-05-2021</td>
-      <td>05-05-2021</td>
-      <td>10.0</td>
-      <td>45</td>
-      <td></td>
-      <td>343857</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.927278</td>
-      <td>c31e86c7-cb3f-4be5-9fcd-1cb1f3bacd3a</td>
-      <td>...</td>
-      <td>70</td>
-      <td>09:00:00</td>
-      <td>17:00:00</td>
-      <td>Free</td>
-      <td>139</td>
-      <td>2021-05-03 16:44:00.927269</td>
-      <td>139</td>
+      <td>Government Hospital Diu</td>
+      <td>Daman and Diu</td>
       <td>Diu</td>
-      <td>37</td>
-      <td>2021-05-03 16:22:24.553471</td>
+      <td>Free</td>
     </tr>
   </tbody>
 </table>
-<p>1251761 rows × 26 columns</p>
+<p>1251761 rows × 5 columns</p>
 </div>
 </div>
 
@@ -1380,12 +1321,12 @@ window.onload = wrap_img;
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
-<div id="altair-viz-6282c5e430db4aecb0e0ff3b809a7bf5"></div>
+<div id="altair-viz-d4ef8ce5a35b4dba818a314607fee08e"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-6282c5e430db4aecb0e0ff3b809a7bf5") {
-      outputDiv = document.getElementById("altair-viz-6282c5e430db4aecb0e0ff3b809a7bf5");
+    if (outputDiv.id !== "altair-viz-d4ef8ce5a35b4dba818a314607fee08e") {
+      outputDiv = document.getElementById("altair-viz-d4ef8ce5a35b4dba818a314607fee08e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -1429,6 +1370,159 @@ window.onload = wrap_img;
     }
   })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "layer": [{"mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3}, "encoding": {"x": {"type": "quantitative", "axis": {"format": ".0%"}, "field": "PercentOfTotal"}, "y": {"type": "nominal", "field": "y"}}, "transform": [{"joinaggregate": [{"op": "sum", "field": "x", "as": "TotalX"}]}, {"calculate": "datum.x / datum.TotalX", "as": "PercentOfTotal"}]}, {"mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 3}, "encoding": {"text": {"type": "quantitative", "field": "x"}, "x": {"type": "quantitative", "axis": {"format": ".0%"}, "field": "PercentOfTotal"}, "y": {"type": "nominal", "field": "y"}}, "transform": [{"joinaggregate": [{"op": "sum", "field": "x", "as": "TotalX"}]}, {"calculate": "datum.x / datum.TotalX", "as": "PercentOfTotal"}]}], "data": {"name": "data-3b2c2005e4b1d3639ad86887557484b8"}, "height": 200, "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json", "datasets": {"data-3b2c2005e4b1d3639ad86887557484b8": [{"y": "Free Vaccines Centers", "x": 1868}, {"y": "Paid Vaccines Centers", "x": 14132}]}}, {"mode": "vega-lite"});
 </script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">session_count</span> <span class="o">=</span> <span class="n">sessions_for_below_45</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;state_name&quot;</span><span class="p">)[[</span><span class="s2">&quot;state_name&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s2">&quot;count&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">((</span><span class="s1">&#39;state_name&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">),</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">session_count</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>state_name</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>count</th>
+    </tr>
+    <tr>
+      <th>state_name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Delhi</th>
+      <td>3368</td>
+    </tr>
+    <tr>
+      <th>Uttar Pradesh</th>
+      <td>2973</td>
+    </tr>
+    <tr>
+      <th>Gujarat</th>
+      <td>2619</td>
+    </tr>
+    <tr>
+      <th>Maharashtra</th>
+      <td>2254</td>
+    </tr>
+    <tr>
+      <th>Haryana</th>
+      <td>1748</td>
+    </tr>
+    <tr>
+      <th>Odisha</th>
+      <td>836</td>
+    </tr>
+    <tr>
+      <th>Jammu and Kashmir</th>
+      <td>729</td>
+    </tr>
+    <tr>
+      <th>Rajasthan</th>
+      <td>620</td>
+    </tr>
+    <tr>
+      <th>Punjab</th>
+      <td>311</td>
+    </tr>
+    <tr>
+      <th>Tamil Nadu</th>
+      <td>163</td>
+    </tr>
+    <tr>
+      <th>Uttarakhand</th>
+      <td>150</td>
+    </tr>
+    <tr>
+      <th>Karnataka</th>
+      <td>125</td>
+    </tr>
+    <tr>
+      <th>Goa</th>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>Chhattisgarh</th>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>Jharkhand</th>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>West Bengal</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>Madhya Pradesh</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>Kerala</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>Lakshadweep</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Himachal Pradesh</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>Ladakh</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
